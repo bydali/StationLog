@@ -2,10 +2,173 @@
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
-                      Title="MainWindow"
-                      Height="350"
-                      Width="525">
-    <Grid>
-
-    </Grid>
+                      Title="MainWindow">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="auto"/>
+			<RowDefinition/>
+			<RowDefinition Height="30"/>
+			<RowDefinition Height="200"/>
+		</Grid.RowDefinitions>
+		<Menu>
+			<MenuItem Header="交接班">
+				<MenuItem Header="过表或接班登记" Click="Login"/>
+				<MenuItem Header="行车日志过表"/>
+				<Separator/>
+				<MenuItem Header="打印行车日志"/>
+				<MenuItem Header="打印阶段计划"/>
+				<Separator/>
+				<MenuItem Header="退出"/>
+			</MenuItem>
+			<MenuItem Header="基本功能">
+				<MenuItem Header="报点/填写日志"/>
+				<MenuItem Header="甩挂/编组管理"/>
+				<MenuItem Header="现在车管理"/>
+				<MenuItem Header="设置字体"/>
+			</MenuItem>
+			<MenuItem Header="窗口选项">
+				<MenuItem Header="查找车次"/>
+				<Separator/>
+				<MenuItem Header="行车日志" IsCheckable="True"/>
+				<MenuItem Header="电话记录" IsCheckable="True"/>
+				<MenuItem Header="列车/甩挂编组" IsCheckable="True"/>
+				<MenuItem Header="领站站名" IsCheckable="True"/>
+				<MenuItem Header="辅助区" IsCheckable="True"/>
+			</MenuItem>
+			<MenuItem Header="历史查询">
+				<MenuItem Header="查询行车日志"/>
+				<MenuItem Header="查询调度命令"/>
+			</MenuItem>
+			<MenuItem Header="维护系统">
+				<MenuItem Header="修改密码"/>
+				<MenuItem Header="用户管理"/>
+			</MenuItem>
+			<MenuItem Header="帮助">
+				<MenuItem Header="使用说明"/>
+				<MenuItem Header="关于"/>
+			</MenuItem>
+			<MenuItem Header="新命令平台">
+				<MenuItem Header="参数设置"/>
+				<MenuItem Header="申请批准"/>
+				<MenuItem Header="通信灯"/>
+				<MenuItem Header="签收命令"/>
+			</MenuItem>
+		</Menu>
+		<Grid Grid.Row="1">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="80"/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+			<StackPanel VerticalAlignment="Center">
+				<Button Content="闭塞" Margin="0,0,0,5"/>
+				<Button Content="同意" Margin="0,0,0,5"/>
+				<Button Content="到达" Margin="0,0,0,5"/>
+				<Button Content="出发" Margin="0,0,0,5"/>
+				<Button Content="邻站" Margin="0,0,0,5"/>
+				<Button Content="撤销" Margin="0,0,0,5"/>
+				<Button Content="取消" Margin="0,0,0,5"/>
+				<Button Content="取消"/>
+			</StackPanel>
+			<DataGrid Grid.Column="1">
+			</DataGrid>
+		</Grid>
+		<Grid Grid.Row="2">
+			<StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+				<Ellipse Width="25" Height="25" Fill="#FF03B41B" />
+				<Label Content="武广二台" VerticalAlignment="Center"/>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal" Margin="0,0,10,0" HorizontalAlignment="Right">
+				<CheckBox Content="汨罗东"/>
+				<CheckBox Content="阶段计划"/>
+				<CheckBox Content="邻站站名"/>
+				<CheckBox Content="接发车方向"/>
+				<CheckBox Content="列车编组"/>
+				<CheckBox Content="电话记录"/>
+				<CheckBox Content="行车日志"/>
+			</StackPanel>
+		</Grid>
+		<Grid Grid.Row="3">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="300"/>
+				<ColumnDefinition/>
+				<ColumnDefinition Width="300"/>
+			</Grid.ColumnDefinitions>
+			<GroupBox Header="与调度台的信息">
+				<ListBox>
+					<ListBoxItem Content="岳阳东重新连接武广二台"/>
+					<ListBoxItem Content="岳阳东：……"/>
+				</ListBox>
+			</GroupBox>
+			<GroupBox Header="键盘输入区" Grid.Column="1">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="auto"/>
+						<RowDefinition Height="auto"/>
+						<RowDefinition Height="auto"/>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition/>
+						<ColumnDefinition Width="100"/>
+					</Grid.ColumnDefinitions>
+					<StackPanel Grid.RowSpan="2" Orientation="Horizontal" VerticalAlignment="Center">
+						<StackPanel>
+							<Label Content="车次"/>
+							<TextBox Width="80"/>
+						</StackPanel>
+						<StackPanel Margin="10,0,0,0">
+							<Label Content="类型"/>
+							<TextBox Width="50"/>
+						</StackPanel>
+						<StackPanel Margin="10,0,0,0">
+							<Label Content="内容"/>
+							<TextBox Width="400"/>
+						</StackPanel>
+					</StackPanel>
+					<ListBox Grid.Column="1" VerticalAlignment="Center">
+						<ListBoxItem Content="记事常用文字"/>
+					</ListBox>
+					<TextBox Grid.Column="1" Grid.Row="1" Height="1" VerticalAlignment="Top"/>
+					<WrapPanel Grid.Row="2" Grid.ColumnSpan="2">
+						<Label Content="[Home]复位"/>
+						<Label Content="[Esc]撤销"/>
+						<Label Content="类型:0股道"/>
+						<Label Content="0股道"/>
+						<Label Content="1股道"/>
+						<Label Content="2股道"/>
+						<Label Content="3股道"/>
+						<Label Content="4股道"/>
+						<Label Content="5股道"/>
+						<Label Content="6股道"/>
+						<Label Content="7股道"/>
+						<Label Content="8股道"/>
+						<Label Content="9股道"/>
+						<Label Content="10股道"/>
+						<Label Content="11股道"/>
+						<Label Content="12股道"/>
+						<Label Content="13股道"/>
+						<Label Content="14股道"/>
+						<Label Content="15股道"/>
+						<Label Content="16股道"/>
+						<Label Content="17股道"/>
+						<Label Content="93到达保存"/>
+						<Label Content="94发车保存"/>
+						<Label Content="95到达机车"/>
+					</WrapPanel>
+				</Grid>
+			</GroupBox>
+			<Grid Grid.Column="2">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="auto"/>
+					<RowDefinition/>
+				</Grid.RowDefinitions>
+				<StackPanel Orientation="Horizontal">
+					<Label Content="与邻站的信息"/>
+					<CheckBox Content="无铃声"/>
+				</StackPanel>
+				<ListBox Grid.Row="1">
+				</ListBox>
+			</Grid>
+		</Grid>
+		
+	</Grid>
 </Controls:MetroWindow>

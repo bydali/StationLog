@@ -1,0 +1,30 @@
+﻿<Window x:Class="StationLog.ReportTimeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StationLog"
+        mc:Ignorable="d"
+        Title="ReportTimeWindow">
+    <Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="40"/>
+			<RowDefinition/>
+			<RowDefinition Height="40"/>
+			<RowDefinition Height="40"/>
+			<RowDefinition Height="30"/>
+		</Grid.RowDefinitions>
+		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+			<Button Content="到达" Margin="0,0,5,0"/>
+			<Button Content="出发" Margin="0,0,5,0"/>
+			<Button Content="保存" Margin="0,0,5,0"/>
+			<Button Content="新纪录" Margin="0,0,5,0"/>
+			<Button Content="删除记录" Margin="0,0,5,0"/>
+			<Button Content="报小编组" Margin="0,0,5,0"/>
+			<CheckBox Content="甩挂车" Margin="0,0,5,0"/>
+			<CheckBox Content="电话记录"/>
+		</StackPanel>
+		<GroupBox Header="车次到发报点" Grid.Row="1">
+		</GroupBox>
+	</Grid>
+</Window>
