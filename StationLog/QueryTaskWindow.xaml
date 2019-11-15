@@ -1,0 +1,27 @@
+﻿<Window x:Class="StationLog.QueryTaskWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StationLog"
+        mc:Ignorable="d"
+        Title="QueryTaskWindow" Height="450" Width="800">
+    <Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="auto"/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+			<Label Content="日期（yyyyMMdd）"/>
+			<TextBox Width="150"/>
+			<Label Content="班次"/>
+			<RadioButton Content="白班"/>
+			<RadioButton Content="夜班"/>
+			<RadioButton Content="下半夜"/>
+			<Button Content="查询"/>
+			<Button Content="打印"/>
+		</StackPanel>
+		<DataGrid Grid.Row="1">
+		</DataGrid>
+	</Grid>
+</Window>

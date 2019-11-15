@@ -80,9 +80,35 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CurrentTrainWindow.xaml.cs">
+      <DependentUpon>CurrentTrainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HangingWindow.xaml.cs">
+      <DependentUpon>HangingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ParameterSettingWindow.xaml.cs">
+      <DependentUpon>ParameterSettingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QueryCommandWindow.xaml.cs">
+      <DependentUpon>QueryCommandWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QueryTaskWindow.xaml.cs">
+      <DependentUpon>QueryTaskWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReceiveCommandWindow.xaml.cs">
+      <DependentUpon>ReceiveCommandWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ReportTimeWindow.xaml.cs">
       <DependentUpon>ReportTimeWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="CurrentTrainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HangingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -103,6 +129,22 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ParameterSettingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QueryCommandWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QueryTaskWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReceiveCommandWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ReportTimeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

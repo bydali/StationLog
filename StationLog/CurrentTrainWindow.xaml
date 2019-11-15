@@ -1,0 +1,69 @@
+﻿<Window x:Class="StationLog.CurrentTrainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StationLog"
+        mc:Ignorable="d"
+        Title="CurrentTrainWindow"
+		Width="700"
+		Height="400"
+		>
+    <Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="0.6*"/>
+			<ColumnDefinition Width="0.4*"/>
+		</Grid.ColumnDefinitions>
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="30"/>
+				<RowDefinition/>
+			</Grid.RowDefinitions>
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+				<RadioButton Content="现状"/>
+				<RadioButton Content="0点"/>
+				<RadioButton Content="6点"/>
+				<RadioButton Content="12点"/>
+				<RadioButton Content="18点"/>
+				<Button Content="上报"/>
+			</StackPanel>
+			<GroupBox Header="现在车" Grid.Row="1">
+			</GroupBox>
+		</Grid>
+		<Grid Grid.Column="1">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="0.4*"/>
+				<RowDefinition Height="0.6*"/>
+			</Grid.RowDefinitions>
+			<GroupBox Header="现车分组">
+			</GroupBox>
+			<GroupBox Header="编辑现车分组" Grid.Row="1">
+				<StackPanel>
+					<StackPanel Orientation="Horizontal">
+						<Label Content="地点"/>
+						<TextBox Width="80"/>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal">
+						<Label Content="类别"/>
+						<TextBox Width="80"/>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal">
+						<Label Content="车数"/>
+						<TextBox Width="80"/>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal">
+						<Label Content="注明"/>
+						<TextBox Width="150"/>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal">
+						<Button Content="词组"/>
+						<Button Content="追加"/>
+						<Button Content="插入"/>
+						<Button Content="修改"/>
+						<Button Content="删除"/>
+					</StackPanel>
+				</StackPanel>
+			</GroupBox>
+		</Grid>
+	</Grid>
+</Window>

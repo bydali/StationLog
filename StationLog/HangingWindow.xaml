@@ -1,0 +1,80 @@
+﻿<Window x:Class="StationLog.HangingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StationLog"
+        mc:Ignorable="d"
+        Title="HangingWindow"
+		Width="900"
+		>
+    <Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+			<ColumnDefinition Width="100"/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="0.4*"/>
+				<RowDefinition/>
+			</Grid.RowDefinitions>
+			<GroupBox Header="列车">
+			</GroupBox>
+			<GroupBox Header="编组单" Grid.Row="1">
+			</GroupBox>
+		</Grid>
+		<StackPanel Grid.Column="1">
+			<GroupBox Header="读取编组">
+				<StackPanel>
+					<TextBox/>
+					<Button Content="读取"/>
+				</StackPanel>
+			</GroupBox>
+			<Button Content="签收编组单"/>
+			<Button Content="上报编组单"/>
+			<Button Content="编辑报头"/>
+			<Button Content="甩车-"/>
+			<Button Content="挂车插入+"/>
+			<Button Content="挂车追加+"/>
+			<Button Content="新编组单"/>
+			<Button Content="保存编组单"/>
+			<Button Content="删除编组单"/>
+			<Button Content="打印编组单"/>
+			<Button Content="编辑车辆"/>
+			<Button Content="车辆转表"/>
+		</StackPanel>
+		<Grid Grid.Column="2">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="0.7*"/>
+				<RowDefinition Height="0.3*"/>
+			</Grid.RowDefinitions>
+			<GroupBox Header="车辆">
+			</GroupBox>
+			<GroupBox Header="编组单报头编辑" Grid.Row="1">
+				<StackPanel>
+					<StackPanel Orientation="Horizontal">
+						<Label Content="发报站"/>
+						<TextBox Width="80"/>
+						<Label Content="发站"/>
+						<TextBox Width="80"/>
+						<Label Content="到站"/>
+						<TextBox Width="80"/>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal">
+						<Label Content="日期"/>
+						<TextBox Width="80"/>
+						<Label Content="时间"/>
+						<TextBox Width="80"/>
+						<Label Content="车次（计/实）"/>
+						<TextBox Width="80"/>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal">
+						<Label Content="篷布数"/>
+						<TextBox Width="80"/>
+					</StackPanel>
+				</StackPanel>
+			</GroupBox>
+		</Grid>
+	</Grid>
+</Window>

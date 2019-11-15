@@ -31,5 +31,47 @@ namespace StationLog
             LoginWindow window = new LoginWindow();
             window.ShowDialog();
         }
+
+        private void ReportTime(object sender, RoutedEventArgs e)
+        {
+            ReportTimeWindow window = new ReportTimeWindow();
+            window.ShowDialog();
+        }
+
+        private void HangingTrain(object sender, RoutedEventArgs e)
+        {
+            HangingWindow window = new HangingWindow();
+            window.ShowDialog();
+        }
+
+        private void CurrentTrain(object sender, RoutedEventArgs e)
+        {
+            CurrentTrainWindow window = new CurrentTrainWindow();
+            window.ShowDialog();
+        }
+
+        private void QueryTask(object sender, RoutedEventArgs e)
+        {
+            QueryTaskWindow window = new QueryTaskWindow();
+            window.ShowDialog();
+        }
+
+        private void QueryCommand(object sender, RoutedEventArgs e)
+        {
+            QueryCommandWindow window = new QueryCommandWindow();
+            window.ShowDialog();
+        }
+
+        private void ParameterSetting(object sender, RoutedEventArgs e)
+        {
+            ParameterSettingWindow window = new ParameterSettingWindow();
+            window.ShowDialog();
+        }
+
+        private void ReceiveCommand(object sender, RoutedEventArgs e)
+        {
+            ReceiveCommandWindow window = new ReceiveCommandWindow();
+            window.ShowDialog();
+        }
     }
 }

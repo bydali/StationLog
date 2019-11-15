@@ -21,9 +21,9 @@
 				<MenuItem Header="退出"/>
 			</MenuItem>
 			<MenuItem Header="基本功能">
-				<MenuItem Header="报点/填写日志"/>
-				<MenuItem Header="甩挂/编组管理"/>
-				<MenuItem Header="现在车管理"/>
+				<MenuItem Header="报点/填写日志" Click="ReportTime"/>
+				<MenuItem Header="甩挂/编组管理" Click="HangingTrain"/>
+				<MenuItem Header="现在车管理" Click="CurrentTrain"/>
 				<MenuItem Header="设置字体"/>
 			</MenuItem>
 			<MenuItem Header="窗口选项">
@@ -36,8 +36,8 @@
 				<MenuItem Header="辅助区" IsCheckable="True"/>
 			</MenuItem>
 			<MenuItem Header="历史查询">
-				<MenuItem Header="查询行车日志"/>
-				<MenuItem Header="查询调度命令"/>
+				<MenuItem Header="查询行车日志" Click="QueryTask"/>
+				<MenuItem Header="查询调度命令" Click="QueryCommand"/>
 			</MenuItem>
 			<MenuItem Header="维护系统">
 				<MenuItem Header="修改密码"/>
@@ -48,10 +48,10 @@
 				<MenuItem Header="关于"/>
 			</MenuItem>
 			<MenuItem Header="新命令平台">
-				<MenuItem Header="参数设置"/>
+				<MenuItem Header="参数设置" Click="ParameterSetting"/>
 				<MenuItem Header="申请批准"/>
 				<MenuItem Header="通信灯"/>
-				<MenuItem Header="签收命令"/>
+				<MenuItem Header="签收命令" Click="ReceiveCommand"/>
 			</MenuItem>
 		</Menu>
 		<Grid Grid.Row="1">
