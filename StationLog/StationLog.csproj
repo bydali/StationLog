@@ -86,6 +86,9 @@
     <Compile Include="HangingWindow.xaml.cs">
       <DependentUpon>HangingWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LogDataGrid.xaml.cs">
+      <DependentUpon>LogDataGrid.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ParameterSettingWindow.xaml.cs">
       <DependentUpon>ParameterSettingWindow.xaml</DependentUpon>
     </Compile>
@@ -106,6 +109,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="HangingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LogDataGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -149,6 +156,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ResourceDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -178,8 +189,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Libs\" />
+    <Content Include="Libs\Microsoft.Practices.ServiceLocation.dll" />
+    <Content Include="Libs\Microsoft.Practices.Unity.Configuration.dll" />
+    <Content Include="Libs\Microsoft.Practices.Unity.dll" />
+    <Content Include="Libs\Microsoft.Practices.Unity.RegistrationByConvention.dll" />
+    <Content Include="Libs\Prism.dll" />
+    <Content Include="Libs\Prism.Unity.Wpf.dll" />
+    <Content Include="Libs\Prism.Wpf.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

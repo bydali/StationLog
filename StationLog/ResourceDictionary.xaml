@@ -1,0 +1,265 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:StationLog">
+	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.DataGrid.xaml" />
+	</ResourceDictionary.MergedDictionaries>
+	<Style
+        x:Key="arrive_HeaderStyle" TargetType="DataGridColumnHeader"
+        >
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate>
+					<!--呈现的关键-->
+					<Border BorderBrush="Black" BorderThickness="1,1,0,0">
+						<Grid>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="auto"/>
+								<RowDefinition Height="auto"/>
+								<RowDefinition Height="auto"/>
+								<RowDefinition Height="auto"/>
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="auto"/>
+							</Grid.ColumnDefinitions>
+							<Border Padding="0,2,0,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="17">
+								<TextBlock Foreground="Black" Text="到达" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="25,0,25,0" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="1" Grid.RowSpan="3">
+								<TextBlock Foreground="Black" Text="列&#xD;&#xA;车&#xD;&#xA;车&#xD;&#xA;次" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="15,0,15,0" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3">
+								<TextBlock Foreground="Black" Text="接&#xD;&#xA;车&#xD;&#xA;方&#xD;&#xA;向" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="15,0,15,0" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="2" Grid.Row="1" Grid.RowSpan="3">
+								<TextBlock Foreground="Black" Text="接&#xD;&#xA;车&#xD;&#xA;股&#xD;&#xA;道" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="0,2,0,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="4">
+								<TextBlock Foreground="Black" Text="时	分" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="15,0,15,0" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="3" Grid.Row="2" Grid.RowSpan="2">
+								<TextBlock Foreground="Black" Text="同站&#xD;&#xA;意发&#xD;&#xA;邻车" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="15,0,15,0" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="4" Grid.Row="2" Grid.RowSpan="2">
+								<TextBlock Foreground="Black" Text="邻发&#xD;&#xA;站车" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="0,2,0,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="5" Grid.ColumnSpan="2" Grid.Row="2">
+								<TextBlock Foreground="Black" Text="本	站	到	达" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="25,2,25,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="5" Grid.Row="3">
+								<TextBlock Foreground="Black" Text="规&#xD;&#xA;定" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="25,2,25,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="6" Grid.Row="3">
+								<TextBlock Foreground="Black" Text="实&#xD;&#xA;际" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="0,2,0,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="7" Grid.ColumnSpan="4" Grid.Row="1">
+								<TextBlock Foreground="Black" Text="摘	车	辆	数" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="0,2,0,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="7" Grid.ColumnSpan="2" Grid.Row="2">
+								<TextBlock Foreground="Black" Text="运	用	车" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="15,2,15,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="7" Grid.Row="3">
+								<TextBlock Foreground="Black" Text="重&#xD;&#xA;车" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="15,2,15,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="8" Grid.Row="3">
+								<TextBlock Foreground="Black" Text="空&#xD;&#xA;车" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="15,2,15,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="9" Grid.Row="2" Grid.RowSpan="2">
+								<TextBlock Foreground="Black" Text="非用&#xD;&#xA;运车" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="15,2,15,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="10" Grid.Row="2" Grid.RowSpan="2">
+								<TextBlock Foreground="Black" Text="守&#xD;&#xA;车" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="15,2,15,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="11" Grid.Row="1" Grid.RowSpan="3">
+								<TextBlock Foreground="Black" Text="占许&#xD;&#xA;用可&#xD;&#xA;区号&#xD;&#xA;间码" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="15,2,15,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="12" Grid.ColumnSpan="5" Grid.Row="1">
+								<TextBlock Foreground="Black" Text="电	话	记	录	号	码" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="15,2,15,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="12" Grid.Row="2" Grid.RowSpan="2">
+								<TextBlock Foreground="Black" Text="承闭&#xD;&#xA;认塞" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="15,2,15,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="13" Grid.Row="2" Grid.RowSpan="2">
+								<TextBlock Foreground="Black" Text="列补&#xD;&#xA;车机&#xD;&#xA;到返&#xD;&#xA;达回" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="15,2,15,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="14" Grid.Row="2" Grid.RowSpan="2">
+								<TextBlock Foreground="Black" Text="取闭&#xD;&#xA;消塞" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="15,2,15,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="15" Grid.Row="2" Grid.RowSpan="2">
+								<TextBlock Foreground="Black" Text="出 &#xD;&#xA;站调&#xD;&#xA;跟车&#xD;&#xA;踪 " HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="15,2,15,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="16" Grid.Row="2" Grid.RowSpan="2">
+								<TextBlock Foreground="Black" Text="出调&#xD;&#xA;站车&#xD;&#xA;跟完&#xD;&#xA;踪毕 " HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+						</Grid>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Style.Triggers>
+			<MultiTrigger>
+				<MultiTrigger.Conditions>
+					<Condition Property="IsMouseOver" Value="True" />
+				</MultiTrigger.Conditions>
+				<Setter Property="Background" Value="#353841" />
+			</MultiTrigger>
+		</Style.Triggers>
+	</Style>
+	<Style
+        x:Key="depart_HeaderStyle" TargetType="DataGridColumnHeader"
+        >
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate>
+					<!--呈现的关键-->
+					<Border BorderBrush="Black" BorderThickness="1,1,0,0">
+						<Grid>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="auto"/>
+								<RowDefinition Height="auto"/>
+								<RowDefinition Height="auto"/>
+								<RowDefinition Height="auto"/>
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="auto"/>
+							</Grid.ColumnDefinitions>
+							<Border Padding="0,2,0,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="19">
+								<TextBlock Foreground="Black" Text="出发" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="25,0,25,0" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="1" Grid.RowSpan="3">
+								<TextBlock Foreground="Black" Text="列&#xD;&#xA;车&#xD;&#xA;车&#xD;&#xA;次" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="15,0,15,0" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3">
+								<TextBlock Foreground="Black" Text="发&#xD;&#xA;车&#xD;&#xA;方&#xD;&#xA;向" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="15,0,15,0" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="2" Grid.Row="1" Grid.RowSpan="3">
+								<TextBlock Foreground="Black" Text="发&#xD;&#xA;车&#xD;&#xA;股&#xD;&#xA;道" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="0,2,0,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="4">
+								<TextBlock Foreground="Black" Text="时	分" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="15,0,15,0" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="3" Grid.Row="2" Grid.RowSpan="2">
+								<TextBlock Foreground="Black" Text="邻意&#xD;&#xA;站发&#xD;&#xA;同车" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="0,2,0,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="2">
+								<TextBlock Foreground="Black" Text="本	站	到	达" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="25,2,25,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="4" Grid.Row="3">
+								<TextBlock Foreground="Black" Text="规&#xD;&#xA;定" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="25,2,25,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="5" Grid.Row="3">
+								<TextBlock Foreground="Black" Text="实&#xD;&#xA;际" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="25,2,25,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="6" Grid.Row="2" Grid.RowSpan="2">
+								<TextBlock Foreground="Black" Text="邻到&#xD;&#xA;站达" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="0,2,0,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="7" Grid.ColumnSpan="4" Grid.Row="1">
+								<TextBlock Foreground="Black" Text="挂	车	辆	数" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="0,2,0,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="7" Grid.ColumnSpan="2" Grid.Row="2">
+								<TextBlock Foreground="Black" Text="运	用	车" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="15,2,15,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="7" Grid.Row="3">
+								<TextBlock Foreground="Black" Text="重&#xD;&#xA;车" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="15,2,15,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="8" Grid.Row="3">
+								<TextBlock Foreground="Black" Text="空&#xD;&#xA;车" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="15,2,15,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="9" Grid.Row="2" Grid.RowSpan="2">
+								<TextBlock Foreground="Black" Text="非用&#xD;&#xA;运车" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="15,2,15,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="10" Grid.Row="2" Grid.RowSpan="2">
+								<TextBlock Foreground="Black" Text="守&#xD;&#xA;车" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="15,2,15,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="11" Grid.ColumnSpan="2" Grid.Row="1">
+								<TextBlock Foreground="Black" Text="列	车	编	组" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="15,2,15,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="11" Grid.Row="2" Grid.RowSpan="2">
+								<TextBlock Foreground="Black" Text="换&#xD;&#xA;长" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="15,2,15,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="12" Grid.RowSpan="2" Grid.Row="2">
+								<TextBlock Foreground="Black" Text="总&#xD;&#xA;重" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="15,2,15,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="13" Grid.Row="1" Grid.RowSpan="3">
+								<TextBlock Foreground="Black" Text="占许&#xD;&#xA;用可&#xD;&#xA;区号&#xD;&#xA;间码" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="15,2,15,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="14" Grid.ColumnSpan="5" Grid.Row="1">
+								<TextBlock Foreground="Black" Text="电	话	记	录	号	码" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="15,2,15,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="14" Grid.Row="2" Grid.RowSpan="2">
+								<TextBlock Foreground="Black" Text="承闭&#xD;&#xA;认塞" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="15,2,15,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="15" Grid.Row="2" Grid.RowSpan="2">
+								<TextBlock Foreground="Black" Text="列补&#xD;&#xA;车机&#xD;&#xA;到返&#xD;&#xA;达回" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="15,2,15,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="16" Grid.Row="2" Grid.RowSpan="2">
+								<TextBlock Foreground="Black" Text="取闭&#xD;&#xA;消塞" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="15,2,15,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="17" Grid.Row="2" Grid.RowSpan="2">
+								<TextBlock Foreground="Black" Text="出 &#xD;&#xA;站调&#xD;&#xA;跟车&#xD;&#xA;踪 " HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+							<Border Padding="15,2,15,2" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Column="18" Grid.Row="2" Grid.RowSpan="2">
+								<TextBlock Foreground="Black" Text="出调&#xD;&#xA;站车&#xD;&#xA;跟完&#xD;&#xA;踪毕 " HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+						</Grid>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Style.Triggers>
+			<MultiTrigger>
+				<MultiTrigger.Conditions>
+					<Condition Property="IsMouseOver" Value="True" />
+				</MultiTrigger.Conditions>
+				<Setter Property="Background" Value="#353841" />
+			</MultiTrigger>
+		</Style.Triggers>
+	</Style>
+	<Style
+		x:Key="arrive_CellStyle" TargetType="DataGridColumnHeader"
+                            >
+		<Setter    
+			Property="Template">
+			<Setter.Value>
+				<ControlTemplate>
+					<UniformGrid Rows="1" Columns="6">
+					</UniformGrid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+</ResourceDictionary>

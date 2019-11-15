@@ -21,7 +21,6 @@
 			<Button Content="查询"/>
 			<Button Content="打印"/>
 		</StackPanel>
-		<DataGrid Grid.Row="1">
-		</DataGrid>
+		<local:LogDataGrid Grid.Row="1"/>
 	</Grid>
 </Window>
