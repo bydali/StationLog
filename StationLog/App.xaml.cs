@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StationLog.IO;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -19,6 +20,8 @@ namespace StationLog
 
             var bootstrapper = new Bootstrapper();
             bootstrapper.Run();
+
+            ReadFromPort.ReceiveMsg();
         }
     }
 }
