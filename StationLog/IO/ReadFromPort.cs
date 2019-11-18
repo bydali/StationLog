@@ -8,22 +8,26 @@ using System.Threading.Tasks;
 
 namespace StationLog.IO
 {
-    public static class ReadFromPort
+    class ReadFromPort
     {
         public static void ReceiveMsg()
         {
-            ConnectionFactory factory = new ConnectionFactory { HostName = "39.108.177.237", UserName = "admin", Password = "admin", VirtualHost = "/" };
-            using (IConnection conn = factory.CreateConnection())
+            ConnectionFactory factory = new ConnectionFactory { HostName = "39.108.177.237", UserName = "admin", Password = "admin" };
+            using (var connection = factory.CreateConnection())
             {
-                using (IModel im = conn.CreateModel())
+                using (var channel = connection.CreateModel())
                 {
+                    var consumer = new QueueingBasicConsumer(channel);
+                    channel.BasicConsume("Q2", true, consumer);
+
                     while (true)
                     {
-                        BasicGetResult res = im.BasicGet("rabbitmq_query", true);
-                        if (res != null)
-                        {
-                            Console.WriteLine("receiver:" + Encoding.UTF8.GetString(res.Body));
-                        }
+                        var ea = consumer.Queue.Dequeue();
+
+                        var body = ea.Body;
+                        var message = Encoding.UTF8.GetString(body);
+
+                        Console.WriteLine("Received {0}", message);
                     }
                 }
             }

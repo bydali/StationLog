@@ -20,8 +20,6 @@ namespace StationLog
 
             var bootstrapper = new Bootstrapper();
             bootstrapper.Run();
-
-            ReadFromPort.ReceiveMsg();
         }
     }
 }
