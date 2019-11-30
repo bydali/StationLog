@@ -86,8 +86,8 @@ namespace StationLog
             base.InitializeModules();
             Application.Current.MainWindow.Show();
 
-            ReadFromPort.ReceiveMsg();
-            WriteToPort.SendMsg();
+            //ReadFromPort.ReceiveMsg();
+            //WriteToPort.SendMsg();
         }
     }
 }
