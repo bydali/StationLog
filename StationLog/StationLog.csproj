@@ -35,6 +35,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DSIM.Communications, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\DSIM.Communications.dll</HintPath>
+    </Reference>
+    <Reference Include="EasyNetQ, Version=3.7.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\EasyNetQ.dll</HintPath>
+    </Reference>
     <Reference Include="MahApps.Metro">
       <HintPath>..\packages\MahApps.Metro.0.14.0.0\lib\net45\MahApps.Metro.dll</HintPath>
     </Reference>
@@ -53,6 +61,10 @@
     <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention">
       <HintPath>Libs\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Prism">
       <HintPath>Libs\Prism.dll</HintPath>
     </Reference>
@@ -62,8 +74,9 @@
     <Reference Include="Prism.Wpf">
       <HintPath>Libs\Prism.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="RabbitMQ.Client, Version=3.5.7.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
-      <HintPath>..\packages\RabbitMQ.Client.3.5.7\lib\net40\RabbitMQ.Client.dll</HintPath>
+    <Reference Include="RabbitMQ.Client, Version=5.0.0.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\RabbitMQ.Client.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -200,17 +213,24 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Message\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Libs\ControlzEx.dll" />
+    <Content Include="Libs\DSIM.Communications.dll" />
+    <Content Include="Libs\EasyNetQ.dll" />
     <Content Include="Libs\MahApps.Metro.IconPacks.dll" />
+    <Content Include="Libs\Microsoft.Diagnostics.Tracing.EventSource.dll" />
     <Content Include="Libs\Microsoft.Practices.ServiceLocation.dll" />
     <Content Include="Libs\Microsoft.Practices.Unity.Configuration.dll" />
     <Content Include="Libs\Microsoft.Practices.Unity.dll" />
     <Content Include="Libs\Microsoft.Practices.Unity.RegistrationByConvention.dll" />
+    <Content Include="Libs\Newtonsoft.Json.dll" />
     <Content Include="Libs\Prism.dll" />
     <Content Include="Libs\Prism.Unity.Wpf.dll" />
     <Content Include="Libs\Prism.Wpf.dll" />
+    <Content Include="Libs\RabbitMQ.Client.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
