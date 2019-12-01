@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MahApps.Metro.Controls;
+using Prism.Events;
+using StationLog.IO;
 
 namespace StationLog
 {
@@ -21,9 +23,18 @@ namespace StationLog
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
-        public MainWindow()
+        private IEventAggregator eventAggregator;
+        public MainWindow(IEventAggregator eventAggregator)
         {
             InitializeComponent();
+            this.eventAggregator = eventAggregator;
+            RegisterALLEvent();
+        }
+
+        private void RegisterALLEvent()
+        {
+
+            ReadFromPort.ReceiveMsg(eventAggregator);
         }
 
         private void Login(object sender, RoutedEventArgs e)

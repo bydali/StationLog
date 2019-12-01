@@ -31,7 +31,6 @@ namespace StationLog
 
         protected override void ConfigureModuleCatalog()
         {
-
         }
 
         protected override IUnityContainer CreateContainer()
@@ -79,15 +78,13 @@ namespace StationLog
 
         protected override void InitializeShell()
         {
+            base.InitializeShell();
         }
 
         protected override void InitializeModules()
         {
             base.InitializeModules();
             Application.Current.MainWindow.Show();
-
-            //ReadFromPort.ReceiveMsg();
-            //WriteToPort.SendMsg();
         }
     }
 }
