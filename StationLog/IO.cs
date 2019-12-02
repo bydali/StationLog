@@ -1,7 +1,5 @@
 ﻿using DSIM.Communications;
 using Prism.Events;
-using RabbitMQ.Client;
-using RabbitMQ.Client.Events;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -9,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StationLog.IO
+namespace StationLog
 {
-    class ReadFromPort
+    class IO
     {
         private static IEventAggregator eventAggregator;
         private static MQHelper _mqHelper;

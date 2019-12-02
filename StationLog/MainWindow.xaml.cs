@@ -14,7 +14,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MahApps.Metro.Controls;
 using Prism.Events;
-using StationLog.IO;
 
 namespace StationLog
 {
@@ -34,7 +33,7 @@ namespace StationLog
         private void RegisterALLEvent()
         {
 
-            ReadFromPort.ReceiveMsg(eventAggregator);
+            //IO.ReceiveMsg(eventAggregator);
         }
 
         private void Login(object sender, RoutedEventArgs e)

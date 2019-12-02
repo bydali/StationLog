@@ -107,10 +107,7 @@
     <Compile Include="HangingWindow.xaml.cs">
       <DependentUpon>HangingWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="IO\ReadFromLocal.cs" />
-    <Compile Include="IO\ReadFromPort.cs" />
-    <Compile Include="IO\WriteToLocal.cs" />
-    <Compile Include="IO\WriteToPort.cs" />
+    <Compile Include="IO.cs" />
     <Compile Include="LogDataGrid.xaml.cs">
       <DependentUpon>LogDataGrid.xaml</DependentUpon>
     </Compile>
@@ -216,7 +213,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Events\" />
-    <Folder Include="Message\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Libs\ControlzEx.dll" />
@@ -233,6 +229,12 @@
     <Content Include="Libs\Prism.Unity.Wpf.dll" />
     <Content Include="Libs\Prism.Wpf.dll" />
     <Content Include="Libs\RabbitMQ.Client.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\YDMSG\YDMSG\YDMSG.csproj">
+      <Project>{6e91f938-3123-4360-8447-948d4da71881}</Project>
+      <Name>YDMSG</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
