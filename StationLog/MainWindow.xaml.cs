@@ -33,7 +33,7 @@ namespace StationLog
         private void RegisterALLEvent()
         {
 
-            //IO.ReceiveMsg(eventAggregator);
+            IO.ReceiveMsg(eventAggregator);
         }
 
         private void Login(object sender, RoutedEventArgs e)
