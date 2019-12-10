@@ -1,5 +1,7 @@
 ﻿using DSIM.Communications;
 using Prism.Events;
+using RabbitMQ.Client;
+using RabbitMQ.Client.Events;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -14,15 +16,40 @@ namespace StationLog
         private static IEventAggregator eventAggregator;
         private static MQHelper _mqHelper;
 
-        public static void ReceiveMsg(IEventAggregator aggregator)
+        public static async void ReceiveMsg(IEventAggregator aggregator)
         {
-            eventAggregator = aggregator;
-            MQHelper.ConnectionString = ConfigurationManager.ConnectionStrings["RabbitMQ"].ConnectionString;
-            _mqHelper = new MQHelper
+            //eventAggregator = aggregator;
+            //MQHelper.ConnectionString = ConfigurationManager.ConnectionStrings["RabbitMQ"].ConnectionString;
+            //_mqHelper = new MQHelper
+            //{
+            //    ClientSubscriptionId = ConfigurationManager.ConnectionStrings["ClientID"].ConnectionString
+            //};
+            //_mqHelper.MessageArrived += RabbitMQ_MessageArrived;
+
+            // 以下为测试代码
+            // 以下为测试代码
+            ConnectionFactory factory = new ConnectionFactory { HostName = "39.108.177.237", Port = 5672, UserName = "admin", Password = "admin" };
+            using (IConnection conn = factory.CreateConnection())
             {
-                ClientSubscriptionId = ConfigurationManager.ConnectionStrings["ClientID"].ConnectionString
-            };
-            _mqHelper.MessageArrived += RabbitMQ_MessageArrived;
+                using (IModel im = conn.CreateModel())
+                {
+                    im.ExchangeDeclare("amq.topic", ExchangeType.Topic, durable: true);
+                    im.QueueDeclare("station");
+                    im.QueueBind("station", "amq.topic", "调度命令");
+
+                    await Task.Run(() =>
+                    {
+                        while (true)
+                        {
+                            BasicGetResult res = im.BasicGet("station", true);
+                            if (res != null)
+                            {
+                                var s = Encoding.UTF8.GetString(res.Body);
+                            }
+                        }
+                    });
+                }
+            }
         }
 
         private static void RabbitMQ_MessageArrived(object sender, MsgCategoryEnum e)

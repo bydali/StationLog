@@ -26,14 +26,21 @@ namespace StationLog
         public MainWindow(IEventAggregator eventAggregator)
         {
             InitializeComponent();
+
             this.eventAggregator = eventAggregator;
+            InitialData();
             RegisterALLEvent();
+            IO.ReceiveMsg(eventAggregator);
+        }
+
+        private void InitialData()
+        {
+
         }
 
         private void RegisterALLEvent()
         {
 
-            IO.ReceiveMsg(eventAggregator);
         }
 
         private void Login(object sender, RoutedEventArgs e)
