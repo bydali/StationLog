@@ -101,9 +101,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converter\TargetStation.cs" />
     <Compile Include="CurrentTrainWindow.xaml.cs">
       <DependentUpon>CurrentTrainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Events\AllEvents.cs" />
     <Compile Include="HangingWindow.xaml.cs">
       <DependentUpon>HangingWindow.xaml</DependentUpon>
     </Compile>
@@ -211,9 +213,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Events\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Libs\ControlzEx.dll" />
     <Content Include="Libs\DSIM.Communications.dll" />

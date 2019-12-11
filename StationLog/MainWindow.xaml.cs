@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MahApps.Metro.Controls;
 using Prism.Events;
+using YDMSG;
 
 namespace StationLog
 {
@@ -23,6 +25,8 @@ namespace StationLog
     public partial class MainWindow : MetroWindow
     {
         private IEventAggregator eventAggregator;
+        private ObservableCollection<MsgYDCommand> ReceivedCmds;
+
         public MainWindow(IEventAggregator eventAggregator)
         {
             InitializeComponent();
@@ -35,12 +39,29 @@ namespace StationLog
 
         private void InitialData()
         {
+            ReceivedCmds = new ObservableCollection<MsgYDCommand>();
+            BindingOperations.EnableCollectionSynchronization(ReceivedCmds, new object());
 
         }
 
         private void RegisterALLEvent()
         {
+            eventAggregator.GetEvent<NewCommand>().Unsubscribe(ReceiveCmd);
+            eventAggregator.GetEvent<NewCommand>().Subscribe(ReceiveCmd);
+        }
 
+        private void ReceiveCmd(MsgYDCommand cmd)
+        {
+            ReceivedCmds.Insert(0, cmd);
+
+            Dispatcher.InvokeAsync(new Action(() =>
+            {
+                if (Application.Current.Windows.OfType<ReceiveCommandWindow>().Count() == 0)
+                {
+                    ReceiveCommandWindow window = new ReceiveCommandWindow(ReceivedCmds);
+                    window.Show();
+                }
+            }));
         }
 
         private void Login(object sender, RoutedEventArgs e)
@@ -87,8 +108,11 @@ namespace StationLog
 
         private void ReceiveCommand(object sender, RoutedEventArgs e)
         {
-            ReceiveCommandWindow window = new ReceiveCommandWindow();
-            window.ShowDialog();
+            if (Application.Current.Windows.OfType<ReceiveCommandWindow>().Count() == 0)
+            {
+                ReceiveCommandWindow window = new ReceiveCommandWindow(ReceivedCmds);
+                window.Show();
+            }
         }
     }
 }

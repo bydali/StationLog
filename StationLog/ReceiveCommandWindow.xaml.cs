@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using YDMSG;
 
 namespace StationLog
 {
@@ -19,9 +21,26 @@ namespace StationLog
     /// </summary>
     public partial class ReceiveCommandWindow : Window
     {
-        public ReceiveCommandWindow()
+        private ObservableCollection<MsgYDCommand> ReceivedCmds;
+        public ReceiveCommandWindow(ObservableCollection<MsgYDCommand> ReceivedCmds)
         {
+            this.ReceivedCmds = ReceivedCmds;
+            DataContext = ReceivedCmds;
+
             InitializeComponent();
+
+            CmdGrid.DataContext = ReceivedCmds.First();
+            cmdsLb.SelectedItem= ReceivedCmds.First();
+        }
+
+        private void ShowCmd(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ClickCount == 2)
+            {
+                var cmd = (MsgYDCommand)((Grid)sender).DataContext;
+                CmdGrid.DataContext = cmd;
+                cmdsLb.SelectedItem = cmd;
+            }
         }
     }
 }

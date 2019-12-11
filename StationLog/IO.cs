@@ -1,4 +1,5 @@
 ﻿using DSIM.Communications;
+using Newtonsoft.Json;
 using Prism.Events;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
@@ -8,6 +9,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YDMSG;
 
 namespace StationLog
 {
@@ -18,7 +20,7 @@ namespace StationLog
 
         public static async void ReceiveMsg(IEventAggregator aggregator)
         {
-            //eventAggregator = aggregator;
+            eventAggregator = aggregator;
             //MQHelper.ConnectionString = ConfigurationManager.ConnectionStrings["RabbitMQ"].ConnectionString;
             //_mqHelper = new MQHelper
             //{
@@ -26,7 +28,6 @@ namespace StationLog
             //};
             //_mqHelper.MessageArrived += RabbitMQ_MessageArrived;
 
-            // 以下为测试代码
             // 以下为测试代码
             ConnectionFactory factory = new ConnectionFactory { HostName = "39.108.177.237", Port = 5672, UserName = "admin", Password = "admin" };
             using (IConnection conn = factory.CreateConnection())
@@ -44,7 +45,17 @@ namespace StationLog
                             BasicGetResult res = im.BasicGet("station", true);
                             if (res != null)
                             {
-                                var s = Encoding.UTF8.GetString(res.Body);
+                                var json = Encoding.UTF8.GetString(res.Body);
+
+                                var cmd = JsonConvert.DeserializeObject<MsgYDCommand>(json);
+
+                                var targets = cmd.Targets.Where(i => i.IsSelected == true &&
+                                    i.Name == ConfigurationManager.ConnectionStrings["Station"].ConnectionString);
+                                if (targets.Count() != 0)
+                                {
+                                    eventAggregator.GetEvent<NewCommand>().
+                                                                        Publish(cmd);
+                                }
                             }
                         }
                     });

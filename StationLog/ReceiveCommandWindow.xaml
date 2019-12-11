@@ -1,85 +1,178 @@
 ﻿<Window x:Class="StationLog.ReceiveCommandWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:StationLog"
-        mc:Ignorable="d"
-        Title="ReceiveCommandWindow" Height="450" Width="800">
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:local="clr-namespace:StationLog"
+		mc:Ignorable="d"
+		Title="ReceiveCommandWindow"
+		Height="450">
+	<Window.Resources>
+		<local:TargetsStation x:Key="showTargets"/>
+		<local:TargetSignee x:Key="showSignee" />
+	</Window.Resources>
 	<Grid>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="0.4*"/>
-			<ColumnDefinition Width="auto"/>
-			<ColumnDefinition/>
+			<ColumnDefinition Width="0.4*" />
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition />
 		</Grid.ColumnDefinitions>
 		<Grid>
 			<Grid.RowDefinitions>
-				<RowDefinition Height="30"/>
-				<RowDefinition/>
+				<RowDefinition Height="30" />
+				<RowDefinition />
 			</Grid.RowDefinitions>
-			<Label Content="接收到的命令" HorizontalAlignment="Center"/>
-			<ListBox Grid.Row="1"/>
+			<Label Content="接收到的命令"
+				   HorizontalAlignment="Center" />
+			<ListBox Grid.Row="1"
+					 Name="cmdsLb"
+					 ItemsSource="{Binding}">
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<Grid MouseLeftButtonDown="ShowCmd">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="auto" />
+								<ColumnDefinition Width="auto" />
+								<ColumnDefinition Width="0.7*" />
+							</Grid.ColumnDefinitions>
+							<Label Content="命令号:"/>
+							<Label Content="{Binding CmdSN}" Grid.Column="1"/>
+							<Label Grid.Column="2"
+								   Content="{Binding Title}" />
+						</Grid>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
 		</Grid>
-		<GridSplitter Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" Width="5"/>
-		<Grid Grid.Column="2">
+		<GridSplitter Grid.Column="1"
+					  HorizontalAlignment="Center"
+					  VerticalAlignment="Stretch"
+					  Width="5" />
+		<Grid Grid.Column="2"
+			  Name="CmdGrid">
 			<Grid.RowDefinitions>
-				<RowDefinition Height="30"/>
-				<RowDefinition/>
+				<RowDefinition Height="30" />
+				<RowDefinition />
 			</Grid.RowDefinitions>
-			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-				<Button Content="确认"/>
-				<Button Content="转交"/>
-				<Button Content="打印"/>
-				<Button Content="预览"/>
-				<Button Content="归档"/>
-				<Button Content="复制"/>
+			<StackPanel Orientation="Horizontal"
+						HorizontalAlignment="Center">
+				<Button Content="确认" />
+				<Button Content="转交" />
+				<Button Content="打印" />
+				<Button Content="预览" />
+				<Button Content="归档" />
+				<Button Content="复制" />
 			</StackPanel>
-			<Grid Grid.Row="1">
+			<Grid Grid.Row="1" Margin="0,0,20,20">
 				<Grid.RowDefinitions>
-					<RowDefinition Height="auto"/>
-					<RowDefinition Height="30"/>
-					<RowDefinition Height="30"/>
-					<RowDefinition/>
-					<RowDefinition Height="30"/>
+					<RowDefinition Height="auto" />
+					<RowDefinition Height="30" />
+					<RowDefinition Height="40" />
+					<RowDefinition />
+					<RowDefinition Height="30" />
 				</Grid.RowDefinitions>
 				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="auto"/>
-					<ColumnDefinition/>
-					<ColumnDefinition Width="auto"/>
-					<ColumnDefinition/>
+					<ColumnDefinition Width="auto" />
+					<ColumnDefinition />
+					<ColumnDefinition Width="auto" />
+					<ColumnDefinition />
 				</Grid.ColumnDefinitions>
-				<StackPanel Grid.ColumnSpan="4" HorizontalAlignment="Center">
-					<Label Content="调	度	命	令" FontWeight="Bold" FontSize="18"/>
+				<StackPanel Grid.ColumnSpan="4"
+							HorizontalAlignment="Center">
+					<Label Content="调	度	命	令"
+						   FontWeight="Bold"
+						   FontSize="18" />
 					<Label />
 				</StackPanel>
-				<Label Content="下令时间" Grid.Row="1" FontSize="18"/>
-				<Label Content="" Grid.Row="1" Grid.Column="1"/>
-				<Label Content="命令号码" Grid.Row="1" Grid.Column="2" FontSize="18"/>
-				<Label Content="" Grid.Row="1" Grid.Column="3"/>
-				<Label Content="受令处所" Grid.Row="2" FontSize="18"/>
-				<Label Content="" Grid.Row="2" Grid.Column="1"/>
-				<Label Content="调度员" Grid.Row="2" Grid.Column="2" FontSize="18"/>
-				<Label Content="" Grid.Row="2" Grid.Column="3"/>
-				<Label Content="命&#xD;&#xA;&#xD;&#xA;令&#xD;&#xA;&#xD;&#xA;内&#xD;&#xA;&#xD;&#xA;容" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18"/>
-				<Border Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" BorderThickness="1,1,1,1"/>
-				<Border Grid.Row="2" Grid.ColumnSpan="4" BorderBrush="Black" BorderThickness="0,0,0,1"/>
-				<Border Grid.Row="2" Grid.RowSpan="2" BorderBrush="Black" BorderThickness="0,0,1,0"/>
-				<Border Grid.Row="2" Grid.Column="2" BorderBrush="Black" BorderThickness="1,0,1,0"/>
-				<Grid Grid.Row="4" Grid.ColumnSpan="4">
+				<Label Content="下令时间："
+					   Grid.Row="1"
+					   FontSize="18" />
+				<Label Grid.Row="1"
+					   Grid.Column="1"
+					   Content="{Binding CmdTime}" 
+					   VerticalAlignment="Center"/>
+				<Label Content="命令号码："
+					   Grid.Row="1"
+					   Grid.Column="2"
+					   FontSize="18" />
+				<Label Content="{Binding CmdSN}"
+					   Grid.Row="1"
+					   Grid.Column="3" 
+					   VerticalAlignment="Center"/>
+				<Label Content="受令处所："
+					   Grid.Row="2"
+					   FontSize="18" 
+					   VerticalAlignment="Center"/>
+				<Label Content="{Binding CmdUnit}"
+					   Grid.Row="2"
+					   Grid.Column="1"
+					   FontSize="18"
+					   VerticalAlignment="Center" />
+				<Label Content="调度员："
+					   Grid.Row="2"
+					   Grid.Column="2"
+					   FontSize="18" 
+					   VerticalAlignment="Center"/>
+				<Label Content="{Binding CommanderSN}"
+					   Grid.Row="2"
+					   Grid.Column="3"
+					   VerticalAlignment="Center" />
+				<Label Content="命&#xD;&#xA;&#xD;&#xA;令&#xD;&#xA;&#xD;&#xA;内&#xD;&#xA;&#xD;&#xA;容"
+					   Grid.Row="3"
+					   VerticalAlignment="Center"
+					   HorizontalAlignment="Center"
+					   FontWeight="Bold"
+					   FontSize="18" />
+				<WrapPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Margin="20">
+					<TextBlock Text="{Binding Content}"/>
+				</WrapPanel>
+				<Border Grid.Row="2"
+						Grid.RowSpan="2"
+						Grid.ColumnSpan="4"
+						BorderBrush="Black"
+						BorderThickness="1,1,1,1" />
+				<Border Grid.Row="2"
+						Grid.ColumnSpan="4"
+						BorderBrush="Black"
+						BorderThickness="0,0,0,1" />
+				<Border Grid.Row="2"
+						Grid.RowSpan="2"
+						BorderBrush="Black"
+						BorderThickness="0,0,1,0" />
+				<Border Grid.Row="2"
+						Grid.Column="2"
+						BorderBrush="Black"
+						BorderThickness="1,0,1,0" />
+				<Grid Grid.Row="4"
+					  Grid.ColumnSpan="4">
 					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="auto"/>
-						<ColumnDefinition/>
-						<ColumnDefinition Width="auto"/>
-						<ColumnDefinition/>
-						<ColumnDefinition Width="auto"/>
-						<ColumnDefinition/>
+						<ColumnDefinition Width="auto" />
+						<ColumnDefinition />
+						<ColumnDefinition Width="auto" />
+						<ColumnDefinition />
+						<ColumnDefinition Width="auto" />
+						<ColumnDefinition />
 					</Grid.ColumnDefinitions>
-					<Label Content="发令点:" FontSize="18"/>
-					<Label Content="" Grid.Column="1"/>
-					<Label Content="受令点:" Grid.Column="2" FontSize="18"/>
-					<Label Content="" Grid.Column="3"/>
-					<Label Content="签收人:" Grid.Column="4" FontSize="18"/>
-					<Label Content="" Grid.Column="5"/>
+					<Label Content="发令点："
+						   FontSize="18" 
+						   VerticalAlignment="Center"/>
+					<Label Content="{Binding CmdUnit}"
+						   Grid.Column="1" 
+						   VerticalAlignment="Center"/>
+					<Label Content="受令点："
+						   Grid.Column="2"
+						   FontSize="18" 
+						   VerticalAlignment="Center"/>
+					<Label Content="{Binding Targets,Converter={StaticResource showTargets}}"
+						   Grid.Column="3" 
+						   VerticalAlignment="Center"/>
+					<Label Content="签收人："
+						   Grid.Column="4"
+						   FontSize="18" 
+						   VerticalAlignment="Center"/>
+					<Label Content="{Binding Targets,Converter={StaticResource showSignee}}"
+						   Grid.Column="5" 
+						   VerticalAlignment="Center"/>
 				</Grid>
 			</Grid>
 		</Grid>
