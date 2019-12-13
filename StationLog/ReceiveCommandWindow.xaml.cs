@@ -30,7 +30,7 @@ namespace StationLog
             InitializeComponent();
 
             CmdGrid.DataContext = ReceivedCmds.First();
-            cmdsLb.SelectedItem= ReceivedCmds.First();
+            cmdsLb.SelectedItem = ReceivedCmds.First();
         }
 
         private void ShowCmd(object sender, MouseButtonEventArgs e)
@@ -41,6 +41,12 @@ namespace StationLog
                 CmdGrid.DataContext = cmd;
                 cmdsLb.SelectedItem = cmd;
             }
+        }
+
+        public void ChangeCmd()
+        {
+            cmdsLb.SelectedItem = ReceivedCmds.First();
+            CmdGrid.DataContext = ReceivedCmds.First();
         }
     }
 }

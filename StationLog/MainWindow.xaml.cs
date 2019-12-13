@@ -61,6 +61,11 @@ namespace StationLog
                     ReceiveCommandWindow window = new ReceiveCommandWindow(ReceivedCmds);
                     window.Show();
                 }
+                else
+                {
+                    Application.Current.Windows.OfType<ReceiveCommandWindow>().First().Activate();
+                    Application.Current.Windows.OfType<ReceiveCommandWindow>().First().ChangeCmd();
+                }
             }));
         }
 
