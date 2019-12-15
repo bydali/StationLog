@@ -77,7 +77,7 @@ namespace StationLog
                     await controller.CloseAsync();
 
                     var station= cmd.Targets.Where(i => i.IsSelected == true &&
-                i.Name == ConfigurationManager.ConnectionStrings["Station"].ConnectionString).
+                i.Name == ConfigurationManager.ConnectionStrings["ClientName"].ConnectionString).
                 First();
                     station.IsChecked = true;
                     station.CheckTime = check.CheckTime;

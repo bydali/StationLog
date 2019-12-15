@@ -67,7 +67,8 @@ namespace StationLog
                 }
                 else
                 {
-                    Application.Current.Windows.OfType<ReceiveCommandWindow>().First().Activate();
+                    var window = Application.Current.Windows.OfType<ReceiveCommandWindow>().First();
+                    window.WindowState = WindowState.Normal;
                     Application.Current.Windows.OfType<ReceiveCommandWindow>().First().ChangeCmd();
                 }
             }));

@@ -37,7 +37,7 @@ namespace StationLog
         {
             var target = ((ObservableCollection<Cmd2Station>)value).
                 Where(i => i.IsSelected == true &&
-                i.Name == ConfigurationManager.ConnectionStrings["Station"].ConnectionString);
+                i.Name == ConfigurationManager.ConnectionStrings["ClientName"].ConnectionString);
             var s = "";
             foreach (var item in target)
             {
@@ -58,7 +58,7 @@ namespace StationLog
         {
             var target = ((ObservableCollection<Cmd2Station>)value).
                 Where(i => i.IsSelected == true &&
-                i.Name == ConfigurationManager.ConnectionStrings["Station"].ConnectionString).First();
+                i.Name == ConfigurationManager.ConnectionStrings["ClientName"].ConnectionString).First();
             if (target.IsChecked)
             {
                 return Brushes.Black;

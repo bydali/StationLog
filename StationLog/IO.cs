@@ -50,7 +50,7 @@ namespace StationLog
                                 var cmd = JsonConvert.DeserializeObject<MsgYDCommand>(json);
 
                                 var targets = cmd.Targets.Where(i => i.IsSelected == true &&
-                                    i.Name == ConfigurationManager.ConnectionStrings["Station"].ConnectionString);
+                                    i.Name == ConfigurationManager.ConnectionStrings["ClientName"].ConnectionString);
                                 if (targets.Count() != 0)
                                 {
                                     eventAggregator.GetEvent<NewCommand>().
