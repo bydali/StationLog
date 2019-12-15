@@ -63,6 +63,24 @@ namespace StationLog
             }
         }
 
+        public static void SendMsg(object msg)
+        {
+            // 以下为测试代码
+            ConnectionFactory factory = new ConnectionFactory { HostName = "39.108.177.237", Port = 5672, UserName = "admin", Password = "admin" };
+            using (IConnection conn = factory.CreateConnection())
+            {
+                using (IModel im = conn.CreateModel())
+                {
+                    im.ExchangeDeclare("amq.topic", ExchangeType.Topic, durable: true);
+
+                    string json = JsonConvert.SerializeObject(msg);
+
+                    byte[] message = Encoding.UTF8.GetBytes(json);
+                    im.BasicPublish("amq.topic", "回执信息", null, message);
+                }
+            }
+        }
+
         private static void RabbitMQ_MessageArrived(object sender, MsgCategoryEnum e)
         {
             eventAggregator.GetEvent<PubSubEvent<string>>().Publish("asdf");

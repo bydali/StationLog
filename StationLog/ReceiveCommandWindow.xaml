@@ -1,19 +1,20 @@
-﻿<Window x:Class="StationLog.ReceiveCommandWindow"
-		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-		xmlns:local="clr-namespace:StationLog"
-		mc:Ignorable="d"
-		Title="ReceiveCommandWindow"
-		Height="450">
+﻿<Controls:MetroWindow x:Class="StationLog.ReceiveCommandWindow"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:local="clr-namespace:StationLog"
+			 mc:Ignorable="d"
+			 Title="ReceiveCommandWindow">
 	<Window.Resources>
-		<local:TargetsStation x:Key="showTargets"/>
+		<local:TargetsStation x:Key="showTargets" />
 		<local:TargetSignee x:Key="showSignee" />
+		<local:TargetReceived x:Key="isReceived" />
 	</Window.Resources>
 	<Grid>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="0.4*" />
+			<ColumnDefinition Width="0.3*" />
 			<ColumnDefinition Width="auto" />
 			<ColumnDefinition />
 		</Grid.ColumnDefinitions>
@@ -35,10 +36,14 @@
 								<ColumnDefinition Width="auto" />
 								<ColumnDefinition Width="0.7*" />
 							</Grid.ColumnDefinitions>
-							<Label Content="命令号:"/>
-							<Label Content="{Binding CmdSN}" Grid.Column="1"/>
+							<Label Content="命令号:"
+								   Foreground="{Binding Targets,Converter={StaticResource isReceived}}" />
+							<Label Content="{Binding CmdSN}"
+								   Foreground="{Binding Targets,Converter={StaticResource isReceived}}"
+								   Grid.Column="1" />
 							<Label Grid.Column="2"
-								   Content="{Binding Title}" />
+								   Content="{Binding Title}"
+								   Foreground="{Binding Targets,Converter={StaticResource isReceived}}" />
 						</Grid>
 					</DataTemplate>
 				</ListBox.ItemTemplate>
@@ -56,14 +61,16 @@
 			</Grid.RowDefinitions>
 			<StackPanel Orientation="Horizontal"
 						HorizontalAlignment="Center">
-				<Button Content="确认" />
+				<Button Content="确认"
+						Click="CheckCmd" />
 				<Button Content="转交" />
 				<Button Content="打印" />
 				<Button Content="预览" />
 				<Button Content="归档" />
 				<Button Content="复制" />
 			</StackPanel>
-			<Grid Grid.Row="1" Margin="0,0,20,20">
+			<Grid Grid.Row="1"
+				  Margin="0,0,20,20">
 				<Grid.RowDefinitions>
 					<RowDefinition Height="auto" />
 					<RowDefinition Height="30" />
@@ -89,20 +96,20 @@
 					   FontSize="18" />
 				<Label Grid.Row="1"
 					   Grid.Column="1"
-					   Content="{Binding CmdTime}" 
-					   VerticalAlignment="Center"/>
+					   Content="{Binding CmdTime}"
+					   VerticalAlignment="Center" />
 				<Label Content="命令号码："
 					   Grid.Row="1"
 					   Grid.Column="2"
 					   FontSize="18" />
 				<Label Content="{Binding CmdSN}"
 					   Grid.Row="1"
-					   Grid.Column="3" 
-					   VerticalAlignment="Center"/>
+					   Grid.Column="3"
+					   VerticalAlignment="Center" />
 				<Label Content="受令处所："
 					   Grid.Row="2"
-					   FontSize="18" 
-					   VerticalAlignment="Center"/>
+					   FontSize="18"
+					   VerticalAlignment="Center" />
 				<Label Content="{Binding CmdUnit}"
 					   Grid.Row="2"
 					   Grid.Column="1"
@@ -111,8 +118,8 @@
 				<Label Content="调度员："
 					   Grid.Row="2"
 					   Grid.Column="2"
-					   FontSize="18" 
-					   VerticalAlignment="Center"/>
+					   FontSize="18"
+					   VerticalAlignment="Center" />
 				<Label Content="{Binding CommanderSN}"
 					   Grid.Row="2"
 					   Grid.Column="3"
@@ -123,8 +130,11 @@
 					   HorizontalAlignment="Center"
 					   FontWeight="Bold"
 					   FontSize="18" />
-				<WrapPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Margin="20">
-					<TextBlock Text="{Binding Content}"/>
+				<WrapPanel Grid.Row="3"
+						   Grid.Column="1"
+						   Grid.ColumnSpan="3"
+						   Margin="20">
+					<TextBlock Text="{Binding Content}" />
 				</WrapPanel>
 				<Border Grid.Row="2"
 						Grid.RowSpan="2"
@@ -154,27 +164,27 @@
 						<ColumnDefinition />
 					</Grid.ColumnDefinitions>
 					<Label Content="发令点："
-						   FontSize="18" 
-						   VerticalAlignment="Center"/>
+						   FontSize="18"
+						   VerticalAlignment="Center" />
 					<Label Content="{Binding CmdUnit}"
-						   Grid.Column="1" 
-						   VerticalAlignment="Center"/>
+						   Grid.Column="1"
+						   VerticalAlignment="Center" />
 					<Label Content="受令点："
 						   Grid.Column="2"
-						   FontSize="18" 
-						   VerticalAlignment="Center"/>
+						   FontSize="18"
+						   VerticalAlignment="Center" />
 					<Label Content="{Binding Targets,Converter={StaticResource showTargets}}"
-						   Grid.Column="3" 
-						   VerticalAlignment="Center"/>
+						   Grid.Column="3"
+						   VerticalAlignment="Center" />
 					<Label Content="签收人："
 						   Grid.Column="4"
-						   FontSize="18" 
-						   VerticalAlignment="Center"/>
+						   FontSize="18"
+						   VerticalAlignment="Center" />
 					<Label Content="{Binding Targets,Converter={StaticResource showSignee}}"
-						   Grid.Column="5" 
-						   VerticalAlignment="Center"/>
+						   Grid.Column="5"
+						   VerticalAlignment="Center" />
 				</Grid>
 			</Grid>
 		</Grid>
 	</Grid>
-</Window>
+</Controls:MetroWindow>
