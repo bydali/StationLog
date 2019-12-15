@@ -34,15 +34,17 @@ namespace StationLog
             {
                 using (IModel im = conn.CreateModel())
                 {
+                    var queueName = ConfigurationManager.ConnectionStrings["ClientName"].ConnectionString;
+
                     im.ExchangeDeclare("amq.topic", ExchangeType.Topic, durable: true);
-                    im.QueueDeclare("station");
-                    im.QueueBind("station", "amq.topic", "调度命令");
+                    im.QueueDeclare(queueName);
+                    im.QueueBind(queueName, "amq.topic", "调度命令");
 
                     await Task.Run(() =>
                     {
                         while (true)
                         {
-                            BasicGetResult res = im.BasicGet("station", true);
+                            BasicGetResult res = im.BasicGet(queueName, true);
                             if (res != null)
                             {
                                 var json = Encoding.UTF8.GetString(res.Body);
