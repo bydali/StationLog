@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +40,8 @@ namespace StationLog
 
         private void InitialData()
         {
+            Title = ConfigurationManager.ConnectionStrings["ClientName"].ConnectionString;
+
             ReceivedCmds = new ObservableCollection<MsgYDCommand>();
             BindingOperations.EnableCollectionSynchronization(ReceivedCmds, new object());
 

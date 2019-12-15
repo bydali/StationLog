@@ -6,7 +6,7 @@
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:local="clr-namespace:StationLog"
 			 mc:Ignorable="d"
-			 Title="ReceiveCommandWindow">
+			 Title="签收命令">
 	<Window.Resources>
 		<local:TargetsStation x:Key="showTargets" />
 		<local:TargetSignee x:Key="showSignee" />

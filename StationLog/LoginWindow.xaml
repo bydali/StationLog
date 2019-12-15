@@ -6,7 +6,7 @@
 		xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:StationLog"
         mc:Ignorable="d"
-        Title="login"
+        Title="登录"
 		Width="400"
 		Height="220"
 		>

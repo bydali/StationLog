@@ -62,7 +62,7 @@ namespace StationLog
                 var cmd = (MsgYDCommand)CmdGrid.DataContext;
 
                 MsgReceipt check = new MsgReceipt(cmd.CmdSN, DateTime.Now.ToString(),
-                    ConfigurationManager.ConnectionStrings["Station"].ConnectionString);
+                    ConfigurationManager.ConnectionStrings["ClientName"].ConnectionString);
 
                 var controller = await this.ShowProgressAsync("", "签收中，正在发送确认信息");
                 controller.SetIndeterminate();
