@@ -9,6 +9,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using YDMSG;
 
 namespace StationLog
@@ -29,39 +30,46 @@ namespace StationLog
             //_mqHelper.MessageArrived += RabbitMQ_MessageArrived;
 
             // 以下为测试代码
-            ConnectionFactory factory = new ConnectionFactory { HostName = "39.108.177.237", Port = 5672, UserName = "admin", Password = "admin" };
-            using (IConnection conn = factory.CreateConnection())
+            try
             {
-                using (IModel im = conn.CreateModel())
+                ConnectionFactory factory = new ConnectionFactory { HostName = "39.108.177.237", Port = 5672, UserName = "admin", Password = "admin" };
+                using (IConnection conn = factory.CreateConnection())
                 {
-                    var queueName = ConfigurationManager.ConnectionStrings["ClientName"].ConnectionString;
-
-                    im.ExchangeDeclare("amq.topic", ExchangeType.Topic, durable: true);
-                    im.QueueDeclare(queueName);
-                    im.QueueBind(queueName, "amq.topic", "调度命令");
-
-                    await Task.Run(() =>
+                    using (IModel im = conn.CreateModel())
                     {
-                        while (true)
+                        var queueName = ConfigurationManager.ConnectionStrings["ClientName"].ConnectionString;
+
+                        im.ExchangeDeclare("amq.topic", ExchangeType.Topic, durable: true);
+                        im.QueueDeclare(queueName);
+                        im.QueueBind(queueName, "amq.topic", "调度命令");
+
+                        await Task.Run(() =>
                         {
-                            BasicGetResult res = im.BasicGet(queueName, true);
-                            if (res != null)
+                            while (true)
                             {
-                                var json = Encoding.UTF8.GetString(res.Body);
-
-                                var cmd = JsonConvert.DeserializeObject<MsgYDCommand>(json);
-
-                                var targets = cmd.Targets.Where(i => i.IsSelected == true &&
-                                    i.Name == ConfigurationManager.ConnectionStrings["ClientName"].ConnectionString);
-                                if (targets.Count() != 0)
+                                BasicGetResult res = im.BasicGet(queueName, true);
+                                if (res != null)
                                 {
-                                    eventAggregator.GetEvent<NewCommand>().
-                                                                        Publish(cmd);
+                                    var json = Encoding.UTF8.GetString(res.Body);
+
+                                    var cmd = JsonConvert.DeserializeObject<MsgYDCommand>(json);
+
+                                    var targets = cmd.Targets.Where(i => i.IsSelected == true &&
+                                        i.Name == ConfigurationManager.ConnectionStrings["ClientName"].ConnectionString);
+                                    if (targets.Count() != 0)
+                                    {
+                                        eventAggregator.GetEvent<NewCommand>().
+                                                                            Publish(cmd);
+                                    }
                                 }
                             }
-                        }
-                    });
+                        });
+                    }
                 }
+            }
+            catch (Exception except)
+            {
+                MessageBox.Show(except.Message);
             }
         }
 
