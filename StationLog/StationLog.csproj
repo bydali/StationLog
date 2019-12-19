@@ -128,6 +128,7 @@
     <Compile Include="ReportTimeWindow.xaml.cs">
       <DependentUpon>ReportTimeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AppVM.cs" />
     <Page Include="CurrentTrainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -213,7 +214,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\YDMSG\YDMSG\YDMSG.csproj">
+      <Project>{6e91f938-3123-4360-8447-948d4da71881}</Project>
+      <Name>YDMSG</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Libs\ControlzEx.dll" />
     <Content Include="Libs\DSIM.Communications.dll" />
@@ -229,12 +235,6 @@
     <Content Include="Libs\Prism.Unity.Wpf.dll" />
     <Content Include="Libs\Prism.Wpf.dll" />
     <Content Include="Libs\RabbitMQ.Client.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\YDMSG\YDMSG\YDMSG.csproj">
-      <Project>{6e91f938-3123-4360-8447-948d4da71881}</Project>
-      <Name>YDMSG</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

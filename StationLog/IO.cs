@@ -52,7 +52,7 @@ namespace StationLog
                                 {
                                     var json = Encoding.UTF8.GetString(res.Body);
 
-                                    var cmd = JsonConvert.DeserializeObject<MsgYDCommand>(json);
+                                    var cmd = JsonConvert.DeserializeObject<MsgDispatchCommand>(json);
 
                                     var targets = cmd.Targets.Where(i => i.IsSelected == true &&
                                         i.Name == ConfigurationManager.ConnectionStrings["ClientName"].ConnectionString);
@@ -61,6 +61,9 @@ namespace StationLog
                                         eventAggregator.GetEvent<NewCommand>().
                                                                             Publish(cmd);
                                     }
+
+                                    // 以下为报点测试代码
+
                                 }
                             }
                         });

@@ -1,8 +1,11 @@
 ﻿using Microsoft.Practices.Unity;
+using Prism.Events;
 using Prism.Logging;
 using Prism.Modularity;
+using Prism.Mvvm;
 using Prism.Regions;
 using Prism.Unity;
+using StationLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,7 +53,8 @@ namespace StationLog
         protected override void ConfigureViewModelLocator()
         {
             base.ConfigureViewModelLocator();
-
+            AppVM appVM = new AppVM(Container.Resolve<IEventAggregator>());
+            ViewModelLocationProvider.Register<MainWindow>(() => { return appVM; });
         }
 
         protected override RegionAdapterMappings ConfigureRegionAdapterMappings()

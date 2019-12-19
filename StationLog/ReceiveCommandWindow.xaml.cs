@@ -24,8 +24,8 @@ namespace StationLog
     /// </summary>
     public partial class ReceiveCommandWindow : MetroWindow
     {
-        private ObservableCollection<MsgYDCommand> ReceivedCmds;
-        public ReceiveCommandWindow(ObservableCollection<MsgYDCommand> ReceivedCmds)
+        private ObservableCollection<MsgDispatchCommand> ReceivedCmds;
+        public ReceiveCommandWindow(ObservableCollection<MsgDispatchCommand> ReceivedCmds)
         {
             this.ReceivedCmds = ReceivedCmds;
             DataContext = ReceivedCmds;
@@ -43,7 +43,7 @@ namespace StationLog
         {
             if (e.ClickCount == 2)
             {
-                var cmd = (MsgYDCommand)((Grid)sender).DataContext;
+                var cmd = (MsgDispatchCommand)((Grid)sender).DataContext;
                 CmdGrid.DataContext = cmd;
                 cmdsLb.SelectedItem = cmd;
             }
@@ -59,7 +59,7 @@ namespace StationLog
         {
             if (CmdGrid.DataContext != null)
             {
-                var cmd = (MsgYDCommand)CmdGrid.DataContext;
+                var cmd = (MsgDispatchCommand)CmdGrid.DataContext;
 
                 MsgReceipt check = new MsgReceipt(cmd.CmdSN, DateTime.Now.ToString(),
                     ConfigurationManager.ConnectionStrings["ClientName"].ConnectionString);

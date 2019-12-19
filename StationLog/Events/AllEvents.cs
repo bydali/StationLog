@@ -8,5 +8,5 @@ using YDMSG;
 
 namespace StationLog
 {
-    public class NewCommand : PubSubEvent<MsgYDCommand> { }
+    public class NewCommand : PubSubEvent<MsgDispatchCommand> { }
 }

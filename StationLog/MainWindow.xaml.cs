@@ -27,25 +27,14 @@ namespace StationLog
     public partial class MainWindow : MetroWindow
     {
         private IEventAggregator eventAggregator;
-        private ObservableCollection<MsgYDCommand> ReceivedCmds;
 
         public MainWindow(IEventAggregator eventAggregator)
         {
             InitializeComponent();
 
             this.eventAggregator = eventAggregator;
-            InitialData();
             RegisterALLEvent();
             IO.ReceiveMsg(eventAggregator);
-        }
-
-        private void InitialData()
-        {
-            Title = ConfigurationManager.ConnectionStrings["ClientName"].ConnectionString;
-
-            ReceivedCmds = new ObservableCollection<MsgYDCommand>();
-            BindingOperations.EnableCollectionSynchronization(ReceivedCmds, new object());
-
         }
 
         private void RegisterALLEvent()
@@ -54,15 +43,17 @@ namespace StationLog
             eventAggregator.GetEvent<NewCommand>().Subscribe(ReceiveCmd);
         }
 
-        private void ReceiveCmd(MsgYDCommand cmd)
+        private void ReceiveCmd(MsgDispatchCommand cmd)
         {
-            ReceivedCmds.Insert(0, cmd);
+            var appVM = (AppVM)DataContext;
+            var receivedLst = appVM.ReceivedCmds;
+            receivedLst.Insert(0, cmd);
 
             Dispatcher.InvokeAsync(new Action(() =>
             {
                 if (Application.Current.Windows.OfType<ReceiveCommandWindow>().Count() == 0)
                 {
-                    ReceiveCommandWindow window = new ReceiveCommandWindow(ReceivedCmds);
+                    ReceiveCommandWindow window = new ReceiveCommandWindow(receivedLst);
                     window.Show();
                 }
                 else
@@ -120,7 +111,9 @@ namespace StationLog
         {
             if (Application.Current.Windows.OfType<ReceiveCommandWindow>().Count() == 0)
             {
-                ReceiveCommandWindow window = new ReceiveCommandWindow(ReceivedCmds);
+                var appVM = (AppVM)DataContext;
+                var receivedLst = appVM.ReceivedCmds;
+                ReceiveCommandWindow window = new ReceiveCommandWindow(receivedLst);
                 window.Show();
             }
         }

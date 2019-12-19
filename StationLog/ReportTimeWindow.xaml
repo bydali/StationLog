@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="列车报点"
 		Width="700"
-		Height="350"
+	    Height="360"
 		>
 	<Grid>
 		<Grid.RowDefinitions>
@@ -47,7 +47,7 @@
 						</StackPanel>
 						<StackPanel>
 							<Label Content="到达股道"/>
-							<ListBox Width="80"/>
+							<ComboBox Width="80"/>
 						</StackPanel>
 						<StackPanel>
 							<Label Content="同意邻站发车"/>
@@ -78,7 +78,7 @@
 						</StackPanel>
 						<StackPanel>
 							<Label Content="出发股道"/>
-							<ListBox Width="80"/>
+							<ComboBox Width="80"/>
 						</StackPanel>
 						<StackPanel>
 							<Label Content="邻站同意发车"/>
@@ -105,16 +105,18 @@
 				<CheckBox Grid.Column="1" Content="……" Margin="10,0,0,0"/>
 			</Grid>
 		</GroupBox>
-		<StackPanel Orientation="Horizontal" Grid.Row="2">
-			<Label Content="本务机调车时分"/>
+		<StackPanel Margin="10,10,0,10" Orientation="Horizontal" Grid.Row="2">
+			<Label Content="本务机调车时分："/>
 			<TextBox Width="80"/>
-			<Label Content="列车停车超时原因"/>
+			<Label Margin="30,0,0,0" Content="列车停车超时原因："/>
 			<TextBox Width="150"/>
 		</StackPanel>
-		<StackPanel Orientation="Horizontal" Grid.Row="3">
-			<Label Content="记事"/>
+		<StackPanel Orientation="Horizontal"
+					Grid.Row="3"
+					Margin="10,0,0,10">
+			<Label Content="记事："/>
 			<TextBox Width="250"/>
-			<Label Content="机车号码"/>
+			<Label Margin="30,0,0,0" Content="机车号码："/>
 			<TextBox Width="150"/>
 		</StackPanel>
 		<StatusBar Grid.Row="4">
