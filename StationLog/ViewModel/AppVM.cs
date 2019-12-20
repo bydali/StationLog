@@ -21,9 +21,15 @@ namespace StationLog
 
         public ObservableCollection<TrainTask> TimeTable { get; set; }
 
+        private string user;
+
         public AppVM(IEventAggregator eventAggregator)
         {
+            this.eventAggregator = eventAggregator;
+
+            user = ConfigurationManager.ConnectionStrings["User"].ConnectionString;
             AppTitle = ConfigurationManager.ConnectionStrings["ClientName"].ConnectionString;
+            AppTitle = AppTitle + "\t" + "用户：" + user;
 
             ReceivedCmds = new ObservableCollection<MsgDispatchCommand>();
             BindingOperations.EnableCollectionSynchronization(ReceivedCmds, new object());

@@ -1,18 +1,19 @@
 ﻿<Controls:MetroWindow x:Class="StationLog.ReceiveCommandWindow"
-			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-			 xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
-			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 xmlns:local="clr-namespace:StationLog"
-			 mc:Ignorable="d"
-			 Title="签收命令">
+					  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+					  xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+					  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+					  xmlns:local="clr-namespace:StationLog"
+					  mc:Ignorable="d"
+					  Width="1000"
+					  Title="签收命令">
 	<Window.Resources>
 		<local:TargetsStation x:Key="showTargets" />
 		<local:TargetSignee x:Key="showSignee" />
 		<local:TargetReceived x:Key="isReceived" />
 	</Window.Resources>
-	<Grid>
+	<Grid Margin="10">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="0.3*" />
 			<ColumnDefinition Width="auto" />
@@ -61,13 +62,19 @@
 			</Grid.RowDefinitions>
 			<StackPanel Orientation="Horizontal"
 						HorizontalAlignment="Center">
-				<Button Content="确认"
-						Click="CheckCmd" />
-				<Button Content="转交" />
-				<Button Content="打印" />
-				<Button Content="预览" />
-				<Button Content="归档" />
-				<Button Content="复制" />
+				<Button Content="确认签收"
+						Click="CheckCmd"
+						Margin="0,0,10,0" />
+				<Button Content="转交"
+						Margin="0,0,10,0" />
+				<Button Content="打印"
+						Margin="0,0,10,0" />
+				<Button Content="预览"
+						Margin="0,0,10,0" />
+				<Button Content="归档"
+						Margin="0,0,10,0" />
+				<Button Content="复制"
+						Margin="0,0,10,0" />
 			</StackPanel>
 			<Grid Grid.Row="1"
 				  Margin="0,0,20,20">

@@ -25,6 +25,7 @@ namespace StationLog
     public partial class ReceiveCommandWindow : MetroWindow
     {
         private ObservableCollection<MsgDispatchCommand> ReceivedCmds;
+
         public ReceiveCommandWindow(ObservableCollection<MsgDispatchCommand> ReceivedCmds)
         {
             this.ReceivedCmds = ReceivedCmds;
@@ -39,6 +40,11 @@ namespace StationLog
             }
         }
 
+        /// <summary>
+        /// 双击查看命令
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ShowCmd(object sender, MouseButtonEventArgs e)
         {
             if (e.ClickCount == 2)
@@ -49,10 +55,10 @@ namespace StationLog
             }
         }
 
-        public void ChangeCmd()
+        public void ChangeCmd(MsgDispatchCommand cmd)
         {
-            cmdsLb.SelectedItem = ReceivedCmds.First();
-            CmdGrid.DataContext = ReceivedCmds.First();
+            cmdsLb.SelectedItem = cmd;
+            CmdGrid.DataContext = cmd;
         }
 
         private async void CheckCmd(object sender, RoutedEventArgs e)
@@ -61,32 +67,21 @@ namespace StationLog
             {
                 var cmd = (MsgDispatchCommand)CmdGrid.DataContext;
 
-                MsgReceipt check = new MsgReceipt(cmd.CmdSN, DateTime.Now.ToString(),
-                    ConfigurationManager.ConnectionStrings["ClientName"].ConnectionString);
-
-                var controller = await this.ShowProgressAsync("", "签收中，正在发送确认信息");
-                controller.SetIndeterminate();
+                MsgSign check = new MsgSign(cmd.CmdSN, DateTime.Now.ToString(),
+                    ConfigurationManager.ConnectionStrings["ClientName"].ConnectionString,
+                    ConfigurationManager.ConnectionStrings["User"].ConnectionString);
 
                 try
                 {
                     await Task.Run(() =>
                                     {
-                                        IO.SendMsg(check);
+                                        IO.SendMsg(check, "DSIM.Command.Sign");
                                     });
-
-                    await controller.CloseAsync();
-
-                    var station= cmd.Targets.Where(i => i.IsSelected == true &&
-                i.Name == ConfigurationManager.ConnectionStrings["ClientName"].ConnectionString).
-                First();
-                    station.IsChecked = true;
-                    station.CheckTime = check.CheckTime;
-                    cmd.Targets = cmd.Targets;
+                    cmd.OneTargetSigned(check);
                 }
                 catch (Exception except)
                 {
-                    await controller.CloseAsync();
-                    MessageBox.Show(except.Message, "确认失败");
+                    MessageBox.Show(except.Message);
                 }
 
             }

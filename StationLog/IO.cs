@@ -22,12 +22,6 @@ namespace StationLog
         public static async void ReceiveMsg(IEventAggregator aggregator)
         {
             eventAggregator = aggregator;
-            //MQHelper.ConnectionString = ConfigurationManager.ConnectionStrings["RabbitMQ"].ConnectionString;
-            //_mqHelper = new MQHelper
-            //{
-            //    ClientSubscriptionId = ConfigurationManager.ConnectionStrings["ClientID"].ConnectionString
-            //};
-            //_mqHelper.MessageArrived += RabbitMQ_MessageArrived;
 
             // 以下为测试代码
             try
@@ -37,11 +31,19 @@ namespace StationLog
                 {
                     using (IModel im = conn.CreateModel())
                     {
-                        var queueName = ConfigurationManager.ConnectionStrings["ClientName"].ConnectionString;
+                        List<string> allTopic = new List<string>()
+                        { "DSIM.Command.Transmit",
+                        "DSIM.Command.AgentSign",
+                        };
+
+                        var queueName = ConfigurationManager.ConnectionStrings["User"].ConnectionString;
 
                         im.ExchangeDeclare("amq.topic", ExchangeType.Topic, durable: true);
                         im.QueueDeclare(queueName);
-                        im.QueueBind(queueName, "amq.topic", "调度命令");
+                        foreach (var item in allTopic)
+                        {
+                            im.QueueBind(queueName, "amq.topic", item);
+                        }
 
                         await Task.Run(() =>
                         {
@@ -52,17 +54,29 @@ namespace StationLog
                                 {
                                     var json = Encoding.UTF8.GetString(res.Body);
 
-                                    var cmd = JsonConvert.DeserializeObject<MsgDispatchCommand>(json);
+                                    var split = json.LastIndexOf("/");
+                                    var suffix = json.Substring(split + 1);
+                                    var content = json.Substring(0, split);
 
-                                    var targets = cmd.Targets.Where(i => i.IsSelected == true &&
-                                        i.Name == ConfigurationManager.ConnectionStrings["ClientName"].ConnectionString);
-                                    if (targets.Count() != 0)
+                                    switch (suffix)
                                     {
-                                        eventAggregator.GetEvent<NewCommand>().
-                                                                            Publish(cmd);
-                                    }
+                                        case ("DSIM.Command.Transmit"):
+                                            var data = JsonConvert.DeserializeObject<MsgDispatchCommand>(content);
 
-                                    // 以下为报点测试代码
+                                            var targets = data.Targets.Where(i => i.IsSelected == true &&
+                                        i.Name == ConfigurationManager.ConnectionStrings["ClientName"].ConnectionString);
+                                            if (targets.Count() != 0)
+                                            {
+                                                eventAggregator.GetEvent<NewCommand>().Publish(data);
+                                            }
+                                            break;
+                                        case ("DSIM.Command.AgentSign"):
+                                            var data1 = JsonConvert.DeserializeObject<MsgSign>(content);
+                                            eventAggregator.GetEvent<AgentSignCommand>().Publish(data1);
+                                            break;
+                                        default:
+                                            break;
+                                    }
 
                                 }
                             }
@@ -76,7 +90,7 @@ namespace StationLog
             }
         }
 
-        public static void SendMsg(object msg)
+        public static void SendMsg(object msg, string topic)
         {
             // 以下为测试代码
             ConnectionFactory factory = new ConnectionFactory { HostName = "39.108.177.237", Port = 5672, UserName = "admin", Password = "admin" };
@@ -84,12 +98,12 @@ namespace StationLog
             {
                 using (IModel im = conn.CreateModel())
                 {
-                    im.ExchangeDeclare("amq.topic", ExchangeType.Topic, durable: true);
-
                     string json = JsonConvert.SerializeObject(msg);
-
+                    json += "/" + topic;
                     byte[] message = Encoding.UTF8.GetBytes(json);
-                    im.BasicPublish("amq.topic", "回执信息", null, message);
+
+                    im.ExchangeDeclare("amq.topic", ExchangeType.Topic, durable: true);
+                    im.BasicPublish("amq.topic", topic, null, message);
                 }
             }
         }

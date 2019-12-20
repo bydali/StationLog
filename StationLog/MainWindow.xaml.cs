@@ -30,9 +30,9 @@ namespace StationLog
 
         public MainWindow(IEventAggregator eventAggregator)
         {
+            this.eventAggregator = eventAggregator;
             InitializeComponent();
 
-            this.eventAggregator = eventAggregator;
             RegisterALLEvent();
             IO.ReceiveMsg(eventAggregator);
         }
@@ -40,29 +40,54 @@ namespace StationLog
         private void RegisterALLEvent()
         {
             eventAggregator.GetEvent<NewCommand>().Unsubscribe(ReceiveCmd);
-            eventAggregator.GetEvent<NewCommand>().Subscribe(ReceiveCmd);
+            eventAggregator.GetEvent<NewCommand>().Subscribe(ReceiveCmd, ThreadOption.UIThread);
+
+            eventAggregator.GetEvent<AgentSignCommand>().Unsubscribe(AgentSignCmd);
+            eventAggregator.GetEvent<AgentSignCommand>().Subscribe(AgentSignCmd, ThreadOption.UIThread);
         }
 
+        private void AgentSignCmd(MsgSign data)
+        {
+            var appVM = (AppVM)DataContext;
+            var cmd = appVM.ReceivedCmds.Where(i => i.CmdSN == data.CmdSN).First();
+
+            cmd.OneTargetSigned(data);
+
+            if (Application.Current.Windows.OfType<ReceiveCommandWindow>().Count() == 0)
+            {
+                ReceiveCommandWindow window = new ReceiveCommandWindow(appVM.ReceivedCmds);
+                window.Show();
+                window.ChangeCmd(cmd);
+            }
+            else
+            {
+                var window = Application.Current.Windows.OfType<ReceiveCommandWindow>().First();
+                window.WindowState = WindowState.Normal;
+                Application.Current.Windows.OfType<ReceiveCommandWindow>().First().ChangeCmd(cmd);
+            }
+        }
+
+        /// <summary>
+        /// 接收新的命令，并显示在单独的窗口中
+        /// </summary>
+        /// <param name="cmd"></param>
         private void ReceiveCmd(MsgDispatchCommand cmd)
         {
             var appVM = (AppVM)DataContext;
             var receivedLst = appVM.ReceivedCmds;
             receivedLst.Insert(0, cmd);
 
-            Dispatcher.InvokeAsync(new Action(() =>
+            if (Application.Current.Windows.OfType<ReceiveCommandWindow>().Count() == 0)
             {
-                if (Application.Current.Windows.OfType<ReceiveCommandWindow>().Count() == 0)
-                {
-                    ReceiveCommandWindow window = new ReceiveCommandWindow(receivedLst);
-                    window.Show();
-                }
-                else
-                {
-                    var window = Application.Current.Windows.OfType<ReceiveCommandWindow>().First();
-                    window.WindowState = WindowState.Normal;
-                    Application.Current.Windows.OfType<ReceiveCommandWindow>().First().ChangeCmd();
-                }
-            }));
+                ReceiveCommandWindow window = new ReceiveCommandWindow(receivedLst);
+                window.Show();
+            }
+            else
+            {
+                var window = Application.Current.Windows.OfType<ReceiveCommandWindow>().First();
+                window.WindowState = WindowState.Normal;
+                Application.Current.Windows.OfType<ReceiveCommandWindow>().First().ChangeCmd(cmd);
+            }
         }
 
         private void Login(object sender, RoutedEventArgs e)

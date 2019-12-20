@@ -9,4 +9,5 @@ using YDMSG;
 namespace StationLog
 {
     public class NewCommand : PubSubEvent<MsgDispatchCommand> { }
+    public class AgentSignCommand : PubSubEvent<MsgSign> { }
 }
