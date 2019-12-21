@@ -67,7 +67,7 @@ namespace StationLog
             {
                 var cmd = (MsgDispatchCommand)CmdGrid.DataContext;
 
-                MsgSign check = new MsgSign(cmd.CmdSN, DateTime.Now.ToString(),
+                MsgCommandSign check = new MsgCommandSign(cmd.CmdSN, DateTime.Now.ToString(),
                     ConfigurationManager.ConnectionStrings["ClientName"].ConnectionString,
                     ConfigurationManager.ConnectionStrings["User"].ConnectionString);
 

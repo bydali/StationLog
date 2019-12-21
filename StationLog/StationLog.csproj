@@ -35,9 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DSIM.Communications, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Communications, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Libs\DSIM.Communications.dll</HintPath>
+      <HintPath>Libs\Communications.dll</HintPath>
     </Reference>
     <Reference Include="EasyNetQ, Version=3.7.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -221,8 +221,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Libs\Communications.dll" />
     <Content Include="Libs\ControlzEx.dll" />
-    <Content Include="Libs\DSIM.Communications.dll" />
     <Content Include="Libs\EasyNetQ.dll" />
     <Content Include="Libs\MahApps.Metro.IconPacks.dll" />
     <Content Include="Libs\Microsoft.Diagnostics.Tracing.EventSource.dll" />

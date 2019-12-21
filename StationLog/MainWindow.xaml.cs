@@ -46,24 +46,27 @@ namespace StationLog
             eventAggregator.GetEvent<AgentSignCommand>().Subscribe(AgentSignCmd, ThreadOption.UIThread);
         }
 
-        private void AgentSignCmd(MsgSign data)
+        private void AgentSignCmd(MsgCommandSign data)
         {
-            var appVM = (AppVM)DataContext;
-            var cmd = appVM.ReceivedCmds.Where(i => i.CmdSN == data.CmdSN).First();
-
-            cmd.OneTargetSigned(data);
-
-            if (Application.Current.Windows.OfType<ReceiveCommandWindow>().Count() == 0)
+            if (data.AgentTarget == ConfigurationManager.ConnectionStrings["ClientName"].ConnectionString)
             {
-                ReceiveCommandWindow window = new ReceiveCommandWindow(appVM.ReceivedCmds);
-                window.Show();
-                window.ChangeCmd(cmd);
-            }
-            else
-            {
-                var window = Application.Current.Windows.OfType<ReceiveCommandWindow>().First();
-                window.WindowState = WindowState.Normal;
-                Application.Current.Windows.OfType<ReceiveCommandWindow>().First().ChangeCmd(cmd);
+                var appVM = (AppVM)DataContext;
+                var cmd = appVM.ReceivedCmds.Where(i => i.CmdSN == data.CmdSN).First();
+
+                cmd.OneTargetSigned(data);
+
+                if (Application.Current.Windows.OfType<ReceiveCommandWindow>().Count() == 0)
+                {
+                    ReceiveCommandWindow window = new ReceiveCommandWindow(appVM.ReceivedCmds);
+                    window.Show();
+                    window.ChangeCmd(cmd);
+                }
+                else
+                {
+                    var window = Application.Current.Windows.OfType<ReceiveCommandWindow>().First();
+                    window.WindowState = WindowState.Normal;
+                    Application.Current.Windows.OfType<ReceiveCommandWindow>().First().ChangeCmd(cmd);
+                }
             }
         }
 
@@ -73,20 +76,25 @@ namespace StationLog
         /// <param name="cmd"></param>
         private void ReceiveCmd(MsgDispatchCommand cmd)
         {
-            var appVM = (AppVM)DataContext;
-            var receivedLst = appVM.ReceivedCmds;
-            receivedLst.Insert(0, cmd);
+            var targets = cmd.Targets.Where(i => i.IsSelected == true &&
+                                        i.Name == ConfigurationManager.ConnectionStrings["ClientName"].ConnectionString);
+            if (targets.Count() != 0)
+            {
+                var appVM = (AppVM)DataContext;
+                var receivedLst = appVM.ReceivedCmds;
+                receivedLst.Insert(0, cmd);
 
-            if (Application.Current.Windows.OfType<ReceiveCommandWindow>().Count() == 0)
-            {
-                ReceiveCommandWindow window = new ReceiveCommandWindow(receivedLst);
-                window.Show();
-            }
-            else
-            {
-                var window = Application.Current.Windows.OfType<ReceiveCommandWindow>().First();
-                window.WindowState = WindowState.Normal;
-                Application.Current.Windows.OfType<ReceiveCommandWindow>().First().ChangeCmd(cmd);
+                if (Application.Current.Windows.OfType<ReceiveCommandWindow>().Count() == 0)
+                {
+                    ReceiveCommandWindow window = new ReceiveCommandWindow(receivedLst);
+                    window.Show();
+                }
+                else
+                {
+                    var window = Application.Current.Windows.OfType<ReceiveCommandWindow>().First();
+                    window.WindowState = WindowState.Normal;
+                    Application.Current.Windows.OfType<ReceiveCommandWindow>().First().ChangeCmd(cmd);
+                }
             }
         }
 

@@ -62,16 +62,10 @@ namespace StationLog
                                     {
                                         case ("DSIM.Command.Transmit"):
                                             var data = JsonConvert.DeserializeObject<MsgDispatchCommand>(content);
-
-                                            var targets = data.Targets.Where(i => i.IsSelected == true &&
-                                        i.Name == ConfigurationManager.ConnectionStrings["ClientName"].ConnectionString);
-                                            if (targets.Count() != 0)
-                                            {
-                                                eventAggregator.GetEvent<NewCommand>().Publish(data);
-                                            }
+                                            eventAggregator.GetEvent<NewCommand>().Publish(data);
                                             break;
                                         case ("DSIM.Command.AgentSign"):
-                                            var data1 = JsonConvert.DeserializeObject<MsgSign>(content);
+                                            var data1 = JsonConvert.DeserializeObject<YDMSG.MsgCommandSign>(content);
                                             eventAggregator.GetEvent<AgentSignCommand>().Publish(data1);
                                             break;
                                         default:
