@@ -14,14 +14,13 @@ namespace StationLog
 {
     class AppVM : BindableBase
     {
+        private string user;
         private IEventAggregator eventAggregator;
+
         private string appTitle;
         public string AppTitle { get => appTitle; set { SetProperty(ref appTitle, value); } }
         public ObservableCollection<MsgDispatchCommand> ReceivedCmds { get; set; }
-
         public ObservableCollection<TrainTask> TimeTable { get; set; }
-
-        private string user;
 
         public AppVM(IEventAggregator eventAggregator)
         {
