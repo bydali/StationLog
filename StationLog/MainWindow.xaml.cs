@@ -44,7 +44,7 @@ namespace StationLog
             RegisterMQWrite();
         }
 
-        private void RegisterMQWrite()
+        private void RegisterLocalEvent()
         {
 
         }
@@ -56,11 +56,6 @@ namespace StationLog
 
             eventAggregator.GetEvent<AgentSignCommand>().Unsubscribe(AgentSignCmd);
             eventAggregator.GetEvent<AgentSignCommand>().Subscribe(AgentSignCmd, ThreadOption.UIThread);
-        }
-
-        private void RegisterLocalEvent()
-        {
-
         }
 
         /// <summary>
@@ -119,6 +114,13 @@ namespace StationLog
             }
         }
 
+        private void RegisterMQWrite()
+        {
+
+        }
+
+        #region 界面按钮事件
+
         private void Login(object sender, RoutedEventArgs e)
         {
             LoginWindow window = new LoginWindow();
@@ -161,6 +163,11 @@ namespace StationLog
             window.ShowDialog();
         }
 
+        /// <summary>
+        /// 打开签收命令列表窗口
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ReceiveCommand(object sender, RoutedEventArgs e)
         {
             if (Application.Current.Windows.OfType<ReceiveCommandWindow>().Count() == 0)
@@ -171,6 +178,8 @@ namespace StationLog
                 window.Show();
             }
         }
+
+        #endregion
 
         private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
