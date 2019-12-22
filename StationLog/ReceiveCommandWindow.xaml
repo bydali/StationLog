@@ -6,8 +6,9 @@
 					  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 					  xmlns:local="clr-namespace:StationLog"
 					  mc:Ignorable="d"
-					  Width="1000"
-					  Title="签收命令">
+					  Width="900"
+					  Title="签收命令"
+					  GlowBrush="{DynamicResource AccentColorBrush}">
 	<Window.Resources>
 		<local:TargetsStation x:Key="showTargets" />
 		<local:TargetSignee x:Key="showSignee" />

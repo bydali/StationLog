@@ -1,27 +1,39 @@
 ﻿<Controls:MetroWindow x:Class="StationLog.QueryTaskWindow"
-		xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:StationLog"
-        mc:Ignorable="d"
-        Title="查询行车日志" Height="450" Width="800">
-    <Grid>
+					  xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+					  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+					  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+					  xmlns:local="clr-namespace:StationLog"
+					  mc:Ignorable="d"
+					  Title="查询行车日志"
+					  Height="450"
+					  Width="800"
+					  GlowBrush="{DynamicResource AccentColorBrush}">
+	<Grid>
 		<Grid.RowDefinitions>
-			<RowDefinition Height="auto"/>
-			<RowDefinition/>
+			<RowDefinition Height="auto" />
+			<RowDefinition />
 		</Grid.RowDefinitions>
-		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-			<Label Content="日期（yyyyMMdd）"/>
-			<TextBox Width="150"/>
-			<Label Content="班次"/>
-			<RadioButton Content="白班"/>
-			<RadioButton Content="夜班"/>
-			<RadioButton Content="下半夜"/>
-			<Button Content="查询"/>
-			<Button Content="打印"/>
+		<StackPanel Orientation="Horizontal"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					Margin="0,10,0,10">
+			<TextBlock Text="日期（yyyyMMdd）" 
+					   VerticalAlignment="Center"/>
+			<TextBox Width="150" />
+			<TextBlock Text="班次" 
+					   VerticalAlignment="Center"
+					   Margin="20,0,10,0"/>
+			<RadioButton Content="白班" Margin="0,0,10,0"/>
+			<RadioButton Content="夜班"
+						 Margin="0,0,10,0" />
+			<RadioButton Content="下半夜"
+						 Margin="0,0,10,0" />
+			<Button Content="查询"
+					Margin="0,0,10,0" />
+			<Button Content="打印" />
 		</StackPanel>
-		<local:LogDataGrid Grid.Row="1"/>
+		<local:LogDataGrid Grid.Row="1" />
 	</Grid>
 </Controls:MetroWindow>

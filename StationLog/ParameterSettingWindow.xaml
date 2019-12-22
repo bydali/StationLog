@@ -1,38 +1,56 @@
 ﻿<Controls:MetroWindow x:Class="StationLog.ParameterSettingWindow"
-		xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:StationLog"
-        mc:Ignorable="d"
-        Title="参数设置" Height="450" Width="800">
+					  xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+					  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+					  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+					  xmlns:local="clr-namespace:StationLog"
+					  mc:Ignorable="d"
+					  Title="参数设置"
+					  Height="400"
+					  Width="500"
+					  GlowBrush="{DynamicResource AccentColorBrush}">
 	<Grid>
 		<Grid.RowDefinitions>
-			<RowDefinition MaxHeight="300"/>
-			<RowDefinition Height="60"/>
-			<RowDefinition Height="25"/>
+			<RowDefinition />
+			<RowDefinition Height="auto" />
+			<RowDefinition Height="auto" />
 		</Grid.RowDefinitions>
 		<DataGrid>
 			<DataGrid.Columns>
-				<DataGridTextColumn Header="参数值"/>
-				<DataGridTextColumn Header="参数名"/>
+				<DataGridTextColumn Width="0.5*"
+									Header="参数值" />
+				<DataGridTextColumn Width="0.5*"
+									Header="参数名" />
 			</DataGrid.Columns>
 		</DataGrid>
-		<UniformGrid Rows="2" Columns="1" Grid.Row="1">
-			<StackPanel Orientation="Horizontal">
-				<Label Content="存取数据方式:" VerticalAlignment="Center"/>
-				<CheckBox Content="文件"/>
-				<CheckBox Content="数据库"/>
+		<Grid Grid.Row="1" Margin="0,10,0,10">
+			<StackPanel Orientation="Horizontal"
+						HorizontalAlignment="Left"
+						Margin="20,0,0,0">
+				<TextBlock Text="存取数据方式:"
+						   VerticalAlignment="Center"
+						   Margin="0,0,10,0" />
+				<CheckBox Content="文件"
+						  Margin="0,0,10,0" />
+				<CheckBox Content="数据库" />
 			</StackPanel>
-			<StackPanel Orientation="Horizontal" Margin="85,0,0,0">
-				<CheckBox Content="仅用于查询"/>
-				<CheckBox Content="设置连接数据库参数"/>
+			<StackPanel Orientation="Horizontal"
+						HorizontalAlignment="Right"
+						>
+				<CheckBox Content="仅用于查询"
+						  Margin="0,0,10,0" />
+				<CheckBox Content="设置连接数据库参数"
+						  Margin="0,0,10,0" />
 			</StackPanel>
-		</UniformGrid>
-		<StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
-			<Button Content="确定"/>
-			<Button Content="取消"/>
+		</Grid>
+		<StackPanel Orientation="Horizontal"
+					Grid.Row="2"
+					VerticalAlignment="Center"
+					HorizontalAlignment="Center"
+					Margin="0,0,0,10">
+			<Button Content="确定" Margin="0,0,10,0"/>
+			<Button Content="取消" />
 		</StackPanel>
 	</Grid>
 </Controls:MetroWindow>

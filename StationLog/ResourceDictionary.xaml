@@ -4,6 +4,10 @@
 	<ResourceDictionary.MergedDictionaries>
 		<ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.DataGrid.xaml" />
 	</ResourceDictionary.MergedDictionaries>
+
+	<local:ArriveReportTime x:Key="arrive" />
+	<local:DepartReportTime x:Key="depart" />
+
 	<Style x:Key="arrive_HeaderStyle"
 		   TargetType="DataGridColumnHeader">
 		<Setter Property="Template">
@@ -20,26 +24,25 @@
 								<RowDefinition Height="auto" />
 							</Grid.RowDefinitions>
 							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="auto" />
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="60" />
 							</Grid.ColumnDefinitions>
-							<Border Padding="0,2,0,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.ColumnSpan="17">
 								<TextBlock Foreground="Black"
@@ -47,8 +50,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="25,0,25,0"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Name="lb1"
 									Grid.Row="1"
@@ -58,8 +60,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="15,0,15,0"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="1"
 									Grid.Row="1"
@@ -69,8 +70,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="15,0,15,0"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="2"
 									Grid.Row="1"
@@ -80,8 +80,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="0,2,0,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="3"
 									Grid.Row="1"
@@ -91,8 +90,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="15,0,15,0"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="3"
 									Grid.Row="2"
@@ -102,8 +100,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="15,0,15,0"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="4"
 									Grid.Row="2"
@@ -113,8 +110,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="0,2,0,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="5"
 									Grid.ColumnSpan="2"
@@ -124,8 +120,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="25,2,25,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="5"
 									Grid.Row="3">
@@ -134,8 +129,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="25,2,25,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="6"
 									Grid.Row="3">
@@ -144,8 +138,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="0,2,0,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="7"
 									Grid.ColumnSpan="4"
@@ -155,8 +148,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="0,2,0,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="7"
 									Grid.ColumnSpan="2"
@@ -166,8 +158,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="15,2,15,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="7"
 									Grid.Row="3">
@@ -176,8 +167,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="15,2,15,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="8"
 									Grid.Row="3">
@@ -186,8 +176,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="15,2,15,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="9"
 									Grid.Row="2"
@@ -197,8 +186,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="15,2,15,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="10"
 									Grid.Row="2"
@@ -208,8 +196,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="15,2,15,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="11"
 									Grid.Row="1"
@@ -219,8 +206,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="15,2,15,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="12"
 									Grid.ColumnSpan="5"
@@ -230,8 +216,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="15,2,15,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="12"
 									Grid.Row="2"
@@ -241,8 +226,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="15,2,15,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="13"
 									Grid.Row="2"
@@ -252,8 +236,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="15,2,15,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="14"
 									Grid.Row="2"
@@ -263,8 +246,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="15,2,15,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="15"
 									Grid.Row="2"
@@ -274,8 +256,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="15,2,15,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="16"
 									Grid.Row="2"
@@ -317,28 +298,27 @@
 								<RowDefinition Height="auto" />
 							</Grid.RowDefinitions>
 							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="auto" />
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="60" />
 							</Grid.ColumnDefinitions>
-							<Border Padding="0,2,0,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.ColumnSpan="19">
 								<TextBlock Foreground="Black"
@@ -346,8 +326,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="25,0,25,0"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Row="1"
 									Grid.RowSpan="3">
@@ -356,8 +335,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="15,0,15,0"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="1"
 									Grid.Row="1"
@@ -367,8 +345,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="15,0,15,0"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="2"
 									Grid.Row="1"
@@ -378,8 +355,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="0,2,0,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="3"
 									Grid.Row="1"
@@ -389,8 +365,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="15,0,15,0"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="3"
 									Grid.Row="2"
@@ -400,8 +375,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="0,2,0,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="4"
 									Grid.ColumnSpan="2"
@@ -411,8 +385,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="25,2,25,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="4"
 									Grid.Row="3">
@@ -421,8 +394,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="25,2,25,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="5"
 									Grid.Row="3">
@@ -431,8 +403,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="25,2,25,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="6"
 									Grid.Row="2"
@@ -442,8 +413,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="0,2,0,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="7"
 									Grid.ColumnSpan="4"
@@ -453,8 +423,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="0,2,0,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="7"
 									Grid.ColumnSpan="2"
@@ -464,8 +433,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="15,2,15,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="7"
 									Grid.Row="3">
@@ -474,8 +442,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="15,2,15,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="8"
 									Grid.Row="3">
@@ -484,8 +451,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="15,2,15,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="9"
 									Grid.Row="2"
@@ -495,8 +461,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="15,2,15,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="10"
 									Grid.Row="2"
@@ -506,8 +471,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="15,2,15,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="11"
 									Grid.ColumnSpan="2"
@@ -517,8 +481,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="15,2,15,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="11"
 									Grid.Row="2"
@@ -528,8 +491,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="15,2,15,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="12"
 									Grid.RowSpan="2"
@@ -539,8 +501,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="15,2,15,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="13"
 									Grid.Row="1"
@@ -550,8 +511,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="15,2,15,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="14"
 									Grid.ColumnSpan="5"
@@ -561,8 +521,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="15,2,15,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="14"
 									Grid.Row="2"
@@ -572,8 +531,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="15,2,15,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="15"
 									Grid.Row="2"
@@ -583,8 +541,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="15,2,15,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="16"
 									Grid.Row="2"
@@ -594,8 +551,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="15,2,15,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="17"
 									Grid.Row="2"
@@ -605,8 +561,7 @@
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
 							</Border>
-							<Border Padding="15,2,15,2"
-									BorderBrush="Black"
+							<Border BorderBrush="Black"
 									BorderThickness="0,0,1,1"
 									Grid.Column="18"
 									Grid.Row="2"
@@ -632,14 +587,119 @@
 			</MultiTrigger>
 		</Style.Triggers>
 	</Style>
+	
 	<Style x:Key="arrive_CellStyle"
 		   TargetType="DataGridCell">
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate>
-					<StackPanel Margin="0,5,0,0">
-						<TextBlock Text="{Binding TrainNum}" />
-					</StackPanel>
+					<Grid DataContext="{Binding Converter={StaticResource arrive}}">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
+						</Grid.ColumnDefinitions>
+						<TextBlock Text="{Binding Train}"
+								   HorizontalAlignment="Center"
+								   Foreground="Black" />
+						<TextBlock Grid.Column="1"
+								   HorizontalAlignment="Center"
+								   Text="{Binding Direction}"
+								   Foreground="Black" />
+						<TextBlock Grid.Column="2"
+								   HorizontalAlignment="Center"
+								   Text="{Binding Channel}"
+								   Foreground="Black" />
+						<TextBlock Grid.Column="3"
+								   HorizontalAlignment="Center"
+								   Text="{Binding NearbyStation}"
+								   Foreground="Black" />
+						<TextBlock Grid.Column="4"
+								   HorizontalAlignment="Center"
+								   Foreground="Black"
+								   Text="{Binding NearbyTime}" />
+						<TextBlock Grid.Column="5"
+								   HorizontalAlignment="Center"
+								   Text="{Binding PlanTime}"
+								   Foreground="Black" />
+						<TextBlock Grid.Column="6"
+								   HorizontalAlignment="Center"
+								   Text="{Binding ActualTime}"
+								   Foreground="Black" />
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style x:Key="depart_CellStyle"
+		   TargetType="DataGridCell">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate>
+					<Grid DataContext="{Binding Converter={StaticResource depart}}">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
+						</Grid.ColumnDefinitions>
+						<TextBlock Text="{Binding Train}"
+								   HorizontalAlignment="Center"
+								   Foreground="Black" />
+						<TextBlock Grid.Column="1"
+								   HorizontalAlignment="Center"
+								   Text="{Binding Direction}"
+								   Foreground="Black" />
+						<TextBlock Grid.Column="2"
+								   HorizontalAlignment="Center"
+								   Text="{Binding Channel}"
+								   Foreground="Black" />
+						<TextBlock Grid.Column="3"
+								   HorizontalAlignment="Center"
+								   Text="{Binding NearbyStation}"
+								   Foreground="Black" />
+						<TextBlock Grid.Column="4"
+								   HorizontalAlignment="Center"
+								   Text="{Binding PlanTime}"
+								   Foreground="Black" />
+						<TextBlock Grid.Column="5"
+								   HorizontalAlignment="Center"
+								   Text="{Binding ActualTime}"
+								   Foreground="Black" />
+						<TextBlock Grid.Column="6"
+								   HorizontalAlignment="Center"
+								   Foreground="Black"
+								   Text="{Binding NearbyTime}" />
+					</Grid>
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>

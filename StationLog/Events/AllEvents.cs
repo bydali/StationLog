@@ -1,4 +1,5 @@
-﻿using Prism.Events;
+﻿using DSIM.Communications;
+using Prism.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,8 @@ using YDMSG;
 namespace StationLog
 {
     public class NewCommand : PubSubEvent<MsgDispatchCommand> { }
-    public class AgentSignCommand : PubSubEvent<MsgCommandSign> { }
+    public class AgentSignCommand : PubSubEvent<YDMSG.MsgCommandSign> { }
+
+    public class NewReportNet : PubSubEvent<MsgTrainTimeReport> { }
+    public class EditReportMsg : PubSubEvent<MsgTrainTimeReport> { }
 }

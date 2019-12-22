@@ -1,8 +1,10 @@
-﻿using Prism.Events;
+﻿using DSIM.Communications;
+using Prism.Events;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Configuration;
 using System.Linq;
 using System.Text;
@@ -12,15 +14,38 @@ using YDMSG;
 
 namespace StationLog
 {
-    class AppVM : BindableBase
+    class AppVM : INotifyPropertyChanged
     {
         private string user;
         private IEventAggregator eventAggregator;
-
         private string appTitle;
-        public string AppTitle { get => appTitle; set { SetProperty(ref appTitle, value); } }
+
+        public string AppTitle
+        {
+            get => appTitle; set
+            {
+                appTitle = value;
+                OnProPertyChanged(new PropertyChangedEventArgs("AppTitle"));
+            }
+        }
         public ObservableCollection<MsgDispatchCommand> ReceivedCmds { get; set; }
-        public ObservableCollection<TrainTask> TimeTable { get; set; }
+
+        private ObservableCollection<MsgTrainTimeReport> timeTable;
+        public ObservableCollection<MsgTrainTimeReport> TimeTable
+        {
+            get => timeTable;
+            set
+            {
+                timeTable = value;
+                OnProPertyChanged(new PropertyChangedEventArgs("TimeTable"));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnProPertyChanged(PropertyChangedEventArgs e)
+        {
+            PropertyChanged?.Invoke(this, e);
+        }
 
         public AppVM(IEventAggregator eventAggregator)
         {
@@ -33,23 +58,20 @@ namespace StationLog
             ReceivedCmds = new ObservableCollection<MsgDispatchCommand>();
             BindingOperations.EnableCollectionSynchronization(ReceivedCmds, new object());
 
-            TimeTable = new ObservableCollection<TrainTask>();
-            TimeTable.Add(new TrainTask() { TrainNum = "G1002" });
+            TimeTable = new ObservableCollection<MsgTrainTimeReport>();
+            GenerateTimeTable(TimeTable);
         }
-    }
 
-    class TrainTask
-    {
-        public string TrainNum { get; set; }
-        public string NeighborDepartTime{ get; set; }
-        public string PlanArriveTime { get; set; }
-        public string ArriveTime { get; set; }
-        public string PlanDepartTime { get; set; }
-        public string DepartTime { get; set; }
-
-        public TrainTask()
+        private void GenerateTimeTable(ObservableCollection<MsgTrainTimeReport> timeTable)
         {
-
+            for (int i = 0; i < 10; i++)
+            {
+                TimeTable.Add(new MsgTrainTimeReport()
+                {
+                    Train = "测试" + i.ToString()
+                });
+            }
         }
     }
+
 }

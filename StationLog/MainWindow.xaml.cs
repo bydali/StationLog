@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DSIM.Communications;
 using MahApps.Metro.Controls;
 using Prism.Events;
 using YDMSG;
@@ -46,7 +47,15 @@ namespace StationLog
 
         private void RegisterLocalEvent()
         {
+            eventAggregator.GetEvent<EditReportMsg>().Unsubscribe(LocalNewLog);
+            eventAggregator.GetEvent<EditReportMsg>().Subscribe(LocalNewLog, ThreadOption.UIThread);
+        }
 
+        private void LocalNewLog(MsgTrainTimeReport msg)
+        {
+            var appVM = (AppVM)DataContext;
+            logDG.DataContext = null;
+            logDG.DataContext = appVM.TimeTable;
         }
 
         private void RegisterMQRead()
@@ -56,6 +65,9 @@ namespace StationLog
 
             eventAggregator.GetEvent<AgentSignCommand>().Unsubscribe(AgentSignCmd);
             eventAggregator.GetEvent<AgentSignCommand>().Subscribe(AgentSignCmd, ThreadOption.UIThread);
+
+            eventAggregator.GetEvent<NewReportNet>().Unsubscribe(NewReportLog);
+            eventAggregator.GetEvent<NewReportNet>().Subscribe(NewReportLog, ThreadOption.UIThread);
         }
 
         /// <summary>
@@ -90,7 +102,7 @@ namespace StationLog
         /// 接收代签命令，并显示签收窗口
         /// </summary>
         /// <param name="data"></param>
-        private void AgentSignCmd(MsgCommandSign data)
+        private void AgentSignCmd(YDMSG.MsgCommandSign data)
         {
             if (data.AgentTarget == ConfigurationManager.ConnectionStrings["ClientName"].ConnectionString)
             {
@@ -114,6 +126,12 @@ namespace StationLog
             }
         }
 
+        private void NewReportLog(MsgTrainTimeReport msg)
+        {
+            var appVM = (AppVM)DataContext;
+            appVM.TimeTable.Add(msg);
+        }
+
         private void RegisterMQWrite()
         {
 
@@ -129,7 +147,7 @@ namespace StationLog
 
         private void ReportTime(object sender, RoutedEventArgs e)
         {
-            ReportTimeWindow window = new ReportTimeWindow();
+            EditTimeWindow window = new EditTimeWindow();
             window.ShowDialog();
         }
 
@@ -184,6 +202,17 @@ namespace StationLog
         private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Process.GetCurrentProcess().Kill();
+        }
+
+        private void EditTrainTime(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Right)
+            {
+                var msg = (MsgTrainTimeReport)((DataGridRow)sender).DataContext;
+                EditTimeWindow window = new EditTimeWindow(eventAggregator, msg);
+                window.Show();
+
+            }
         }
     }
 }

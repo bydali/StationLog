@@ -5,16 +5,52 @@
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:local="clr-namespace:StationLog"
 			 mc:Ignorable="d">
+	<UserControl.Resources>
+	</UserControl.Resources>
 	<DataGrid AutoGenerateColumns="False"
+			  RowHeaderWidth="20"
 			  CanUserAddRows="False"
-			  ItemsSource="{Binding}">
+			  ItemsSource="{Binding}"
+			  Style="{x:Null}"
+			  >
 		<DataGrid.Columns>
 			<DataGridTextColumn HeaderStyle="{StaticResource ResourceKey=arrive_HeaderStyle}"
 								CellStyle="{StaticResource ResourceKey=arrive_CellStyle}" />
-			<DataGridTextColumn HeaderStyle="{StaticResource ResourceKey=depart_HeaderStyle}" />
-			<DataGridTextColumn />
-			<DataGridTextColumn />
-			<DataGridTextColumn />
+			<DataGridTextColumn HeaderStyle="{StaticResource ResourceKey=depart_HeaderStyle}"
+								CellStyle="{StaticResource ResourceKey=depart_CellStyle}" />
+			<DataGridTextColumn Binding="{Binding ShunterTime}">
+				<DataGridTextColumn.HeaderTemplate>
+					<DataTemplate>
+						<Grid Width="80">
+							<TextBlock HorizontalAlignment="Center"
+									   VerticalAlignment="Center"
+									   Text="本车&#xD;&#xA;务时&#xD;&#xA;机分&#xD;&#xA;调" />
+						</Grid>
+					</DataTemplate>
+				</DataGridTextColumn.HeaderTemplate>
+			</DataGridTextColumn>
+			<DataGridTextColumn>
+				<DataGridTextColumn.HeaderTemplate>
+					<DataTemplate>
+						<Grid Width="80">
+							<TextBlock HorizontalAlignment="Center"
+									   VerticalAlignment="Center"
+									   Text="超&#xD;&#xA;时&#xD;&#xA;原&#xD;&#xA;因" />
+						</Grid>
+					</DataTemplate>
+				</DataGridTextColumn.HeaderTemplate>
+			</DataGridTextColumn>
+			<DataGridTextColumn Binding="{Binding Remark}">
+				<DataGridTextColumn.HeaderTemplate>
+					<DataTemplate>
+						<Grid Width="80">
+							<TextBlock HorizontalAlignment="Center"
+									   VerticalAlignment="Center"
+									   Text="记&#xD;&#xA;事" />
+						</Grid>
+					</DataTemplate>
+				</DataGridTextColumn.HeaderTemplate>
+			</DataGridTextColumn>
 		</DataGrid.Columns>
 	</DataGrid>
 </UserControl>
