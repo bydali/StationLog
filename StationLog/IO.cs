@@ -23,95 +23,97 @@ namespace StationLog
         {
             eventAggregator = aggregator;
 
-            MQHelper.ConnectionString = ConfigurationManager.ConnectionStrings["RabbitMQ"].ConnectionString;
-            _mqHelper = new MQHelper
-            {
-                ClientSubscriptionId = "岳阳东车务端"
-            };
-            _mqHelper.MessageArrived += RabbitMQ_MessageArrived;
+            //MQHelper.ConnectionString = ConfigurationManager.ConnectionStrings["RabbitMQ"].ConnectionString;
+            //_mqHelper = new MQHelper
+            //{
+            //    ClientSubscriptionId = "岳阳东车务端"
+            //};
+            //_mqHelper.Topics.Add("DSIM.TrainTime.Report");
+            //_mqHelper.Subcribe();
+            //_mqHelper.MessageArrived += RabbitMQ_MessageArrived;
 
             // 以下为测试代码
-            //try
-            //{
-            //    ConnectionFactory factory = new ConnectionFactory { HostName = "39.108.177.237", Port = 5672, UserName = "admin", Password = "admin" };
-            //    using (IConnection conn = factory.CreateConnection())
-            //    {
-            //        using (IModel im = conn.CreateModel())
-            //        {
-            //            List<string> allTopic = new List<string>()
-            //            { "DSIM.Command.Transmit",
-            //            "DSIM.Command.AgentSign",
-            //            "DSIM.TrainTime.Report",
-            //            };
+            try
+            {
+                ConnectionFactory factory = new ConnectionFactory { HostName = "39.108.177.237", Port = 5672, UserName = "admin", Password = "admin" };
+                using (IConnection conn = factory.CreateConnection())
+                {
+                    using (IModel im = conn.CreateModel())
+                    {
+                        List<string> allTopic = new List<string>()
+                        { "DSIM.Command.Transmit",
+                        "DSIM.Command.AgentSign",
+                        "DSIM.TrainTime.Report",
+                        };
 
-            //            var queueName = ConfigurationManager.ConnectionStrings["User"].ConnectionString;
+                        var queueName = ConfigurationManager.ConnectionStrings["User"].ConnectionString;
 
-            //            im.ExchangeDeclare("amq.topic", ExchangeType.Topic, durable: true);
-            //            im.QueueDeclare(queueName);
-            //            foreach (var item in allTopic)
-            //            {
-            //                im.QueueBind(queueName, "amq.topic", item);
-            //            }
+                        im.ExchangeDeclare("amq.topic", ExchangeType.Topic, durable: true);
+                        im.QueueDeclare(queueName);
+                        foreach (var item in allTopic)
+                        {
+                            im.QueueBind(queueName, "amq.topic", item);
+                        }
 
-            //            await Task.Run(() =>
-            //            {
-            //                while (true)
-            //                {
-            //                    BasicGetResult res = im.BasicGet(queueName, true);
-            //                    if (res != null)
-            //                    {
-            //                        var json = Encoding.UTF8.GetString(res.Body);
+                        await Task.Run(() =>
+                        {
+                            while (true)
+                            {
+                                BasicGetResult res = im.BasicGet(queueName, true);
+                                if (res != null)
+                                {
+                                    var json = Encoding.UTF8.GetString(res.Body);
 
-            //                        var split = json.LastIndexOf("/");
-            //                        var suffix = json.Substring(split + 1);
-            //                        var content = json.Substring(0, split);
+                                    var split = json.LastIndexOf("/");
+                                    var suffix = json.Substring(split + 1);
+                                    var content = json.Substring(0, split);
 
-            //                        switch (suffix)
-            //                        {
-            //                            case ("DSIM.Command.Transmit"):
-            //                                var data = JsonConvert.DeserializeObject<MsgDispatchCommand>(content);
-            //                                eventAggregator.GetEvent<NewCommand>().Publish(data);
-            //                                break;
-            //                            case ("DSIM.Command.AgentSign"):
-            //                                var data1 = JsonConvert.DeserializeObject<YDMSG.MsgCommandSign>(content);
-            //                                eventAggregator.GetEvent<AgentSignCommand>().Publish(data1);
-            //                                break;
-            //                            case ("DSIM.Command.Report"):
-            //                                var data2 = JsonConvert.DeserializeObject<YDMSG.MsgTrainTimeReport>(content);
-            //                                eventAggregator.GetEvent<NewReportNet>().Publish(data2);
-            //                                break;
-            //                            default:
-            //                                break;
-            //                        }
+                                    switch (suffix)
+                                    {
+                                        case ("DSIM.Command.Transmit"):
+                                            var data = JsonConvert.DeserializeObject<MsgDispatchCommand>(content);
+                                            eventAggregator.GetEvent<NewCommand>().Publish(data);
+                                            break;
+                                        case ("DSIM.Command.AgentSign"):
+                                            var data1 = JsonConvert.DeserializeObject<YDMSG.MsgCommandSign>(content);
+                                            eventAggregator.GetEvent<AgentSignCommand>().Publish(data1);
+                                            break;
+                                        case ("DSIM.Command.Report"):
+                                            var data2 = JsonConvert.DeserializeObject<MsgTrainTimeReport>(content);
+                                            eventAggregator.GetEvent<NewReportNet>().Publish(data2);
+                                            break;
+                                        default:
+                                            break;
+                                    }
 
-            //                    }
-            //                }
-            //            });
-            //        }
-            //    }
-            //}
-            //catch (Exception except)
-            //{
-            //    MessageBox.Show(except.Message);
-            //}
+                                }
+                            }
+                        });
+                    }
+                }
+            }
+            catch (Exception except)
+            {
+                MessageBox.Show(except.Message);
+            }
         }
 
         public static void SendMsg(object msg, string topic)
         {
             // 以下为测试代码
-            //ConnectionFactory factory = new ConnectionFactory { HostName = "39.108.177.237", Port = 5672, UserName = "admin", Password = "admin" };
-            //using (IConnection conn = factory.CreateConnection())
-            //{
-            //    using (IModel im = conn.CreateModel())
-            //    {
-            //        string json = JsonConvert.SerializeObject(msg);
-            //        json += "/" + topic;
-            //        byte[] message = Encoding.UTF8.GetBytes(json);
+            ConnectionFactory factory = new ConnectionFactory { HostName = "39.108.177.237", Port = 5672, UserName = "admin", Password = "admin" };
+            using (IConnection conn = factory.CreateConnection())
+            {
+                using (IModel im = conn.CreateModel())
+                {
+                    string json = JsonConvert.SerializeObject(msg);
+                    json += "/" + topic;
+                    byte[] message = Encoding.UTF8.GetBytes(json);
 
-            //        im.ExchangeDeclare("amq.topic", ExchangeType.Topic, durable: true);
-            //        im.BasicPublish("amq.topic", topic, null, message);
-            //    }
-            //}
+                    im.ExchangeDeclare("amq.topic", ExchangeType.Topic, durable: true);
+                    im.BasicPublish("amq.topic", topic, null, message);
+                }
+            }
         }
 
         private static void RabbitMQ_MessageArrived(object sender, MsgCategoryEnum e)

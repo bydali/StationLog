@@ -29,20 +29,20 @@ namespace StationLog
     {
         private IEventAggregator eventAggregator;
 
+        private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Process.GetCurrentProcess().Kill();
+        }
+
         public MainWindow(IEventAggregator eventAggregator)
         {
             this.eventAggregator = eventAggregator;
             InitializeComponent();
 
-            RegisterALLEvent();
-            IO.ReceiveMsg(eventAggregator);
-        }
-
-        private void RegisterALLEvent()
-        {
             RegisterLocalEvent();
-            RegisterMQRead();
-            RegisterMQWrite();
+            RegisterMQIO();
+
+            IO.ReceiveMsg(eventAggregator);
         }
 
         private void RegisterLocalEvent()
@@ -51,6 +51,10 @@ namespace StationLog
             eventAggregator.GetEvent<EditReportMsg>().Subscribe(LocalNewLog, ThreadOption.UIThread);
         }
 
+        /// <summary>
+        /// 编辑完某条报点消息后，更新界面
+        /// </summary>
+        /// <param name="msg"></param>
         private void LocalNewLog(MsgTrainTimeReport msg)
         {
             var appVM = (AppVM)DataContext;
@@ -58,7 +62,7 @@ namespace StationLog
             logDG.DataContext = appVM.TimeTable;
         }
 
-        private void RegisterMQRead()
+        private void RegisterMQIO()
         {
             eventAggregator.GetEvent<NewCommand>().Unsubscribe(ReceiveCmd);
             eventAggregator.GetEvent<NewCommand>().Subscribe(ReceiveCmd, ThreadOption.UIThread);
@@ -68,6 +72,7 @@ namespace StationLog
 
             eventAggregator.GetEvent<NewReportNet>().Unsubscribe(NewReportLog);
             eventAggregator.GetEvent<NewReportNet>().Subscribe(NewReportLog, ThreadOption.UIThread);
+
         }
 
         /// <summary>
@@ -126,15 +131,14 @@ namespace StationLog
             }
         }
 
+        /// <summary>
+        /// 接收报点信息
+        /// </summary>
+        /// <param name="msg"></param>
         private void NewReportLog(MsgTrainTimeReport msg)
         {
             var appVM = (AppVM)DataContext;
             appVM.TimeTable.Add(msg);
-        }
-
-        private void RegisterMQWrite()
-        {
-
         }
 
         #region 界面按钮事件
@@ -197,13 +201,11 @@ namespace StationLog
             }
         }
 
-        #endregion
-
-        private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            Process.GetCurrentProcess().Kill();
-        }
-
+        /// <summary>
+        /// 右键打开某条报点消息的编辑界面
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EditTrainTime(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Right)
@@ -214,5 +216,7 @@ namespace StationLog
 
             }
         }
+
+        #endregion
     }
 }

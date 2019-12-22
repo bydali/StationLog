@@ -9,9 +9,18 @@ using YDMSG;
 
 namespace StationLog
 {
+
+    #region 本地事件
+
+    public class EditReportMsg : PubSubEvent<MsgTrainTimeReport> { }
+
+    #endregion
+
+    #region 网络流入事件
+
     public class NewCommand : PubSubEvent<MsgDispatchCommand> { }
     public class AgentSignCommand : PubSubEvent<YDMSG.MsgCommandSign> { }
-
     public class NewReportNet : PubSubEvent<MsgTrainTimeReport> { }
-    public class EditReportMsg : PubSubEvent<MsgTrainTimeReport> { }
+
+    #endregion
 }
