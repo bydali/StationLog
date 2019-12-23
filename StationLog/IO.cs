@@ -127,6 +127,10 @@ namespace StationLog
                     ((MsgCommandSign)msg).Topic = topic;
                     _mqHelper.Publish((MsgCommandSign)msg);
                     break;
+                case ("MsgTrainTimeReport"):
+                    ((MsgTrainTimeReport)msg).Topic = topic;
+                    _mqHelper.Publish((MsgTrainTimeReport)msg);
+                    break;
                 default:
                     break;
             }

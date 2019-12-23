@@ -137,7 +137,18 @@ namespace StationLog
         private void NewReportLog(MsgTrainTimeReport msg)
         {
             var appVM = (AppVM)DataContext;
-            appVM.TimeTable.Add(msg);
+
+            var result = appVM.TimeTable.Where(i => i.Train == msg.Train);
+            if (result.Count()!=0)
+            {
+                var idx = appVM.TimeTable.IndexOf(result.First());
+                appVM.TimeTable.Remove(result.First());
+                appVM.TimeTable.Insert(idx, msg);
+            }
+            else
+            {
+                appVM.TimeTable.Add(msg);
+            }
         }
 
         #region 界面按钮事件
@@ -216,8 +227,14 @@ namespace StationLog
             }
         }
 
+
         #endregion
 
-
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var msg = new MsgTrainTimeReport();
+            msg.Category = MsgCategoryEnum.TrainTimeReport;
+            IO.SendMsg(msg, "DSIM.TrainTime.Report");
+        }
     }
 }

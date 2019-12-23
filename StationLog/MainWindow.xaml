@@ -80,6 +80,7 @@
 			<StackPanel VerticalAlignment="Center"
 						Margin="5,0,5,0">
 				<Button Content="闭塞"
+						Click="Button_Click"
 						Margin="0,0,0,5" />
 				<Button Content="同意"
 						Margin="0,0,0,5" />
