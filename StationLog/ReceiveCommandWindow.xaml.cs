@@ -1,4 +1,5 @@
-﻿using MahApps.Metro.Controls;
+﻿using DSIM.Communications;
+using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using YDMSG;
 
 namespace StationLog
 {
@@ -75,6 +75,7 @@ namespace StationLog
                 {
                     await Task.Run(() =>
                                     {
+                                        check.Category = MsgCategoryEnum.CommandSign;
                                         IO.SendMsg(check, "DSIM.Command.Sign");
                                     });
                     cmd.OneTargetSigned(check);

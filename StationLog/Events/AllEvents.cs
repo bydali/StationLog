@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using YDMSG;
 
 namespace StationLog
 {
@@ -19,7 +18,7 @@ namespace StationLog
     #region 网络流入事件
 
     public class NewCommand : PubSubEvent<MsgDispatchCommand> { }
-    public class AgentSignCommand : PubSubEvent<YDMSG.MsgCommandSign> { }
+    public class AgentSignCommand : PubSubEvent<MsgCommandSign> { }
     public class NewReportNet : PubSubEvent<MsgTrainTimeReport> { }
 
     #endregion

@@ -12,7 +12,7 @@
 		<Grid.RowDefinitions>
 			<RowDefinition Height="auto" />
 			<RowDefinition />
-			<RowDefinition Height="30" />
+			<RowDefinition Height="auto" />
 			<RowDefinition Height="200" />
 		</Grid.RowDefinitions>
 		<Menu>
@@ -77,7 +77,8 @@
 				<ColumnDefinition Width="80" />
 				<ColumnDefinition />
 			</Grid.ColumnDefinitions>
-			<StackPanel VerticalAlignment="Center">
+			<StackPanel VerticalAlignment="Center"
+						Margin="5,0,5,0">
 				<Button Content="闭塞"
 						Margin="0,0,0,5" />
 				<Button Content="同意"
@@ -104,7 +105,8 @@
 				</local:LogDataGrid.Resources>
 			</local:LogDataGrid>
 		</Grid>
-		<Grid Grid.Row="2">
+		<Grid Grid.Row="2"
+			  Margin="0,5,0,5">
 			<StackPanel Orientation="Horizontal"
 						Margin="10,0,0,0">
 				<Ellipse Width="25"
@@ -138,14 +140,16 @@
 				<ColumnDefinition />
 				<ColumnDefinition Width="300" />
 			</Grid.ColumnDefinitions>
-			<GroupBox Header="与调度台的信息">
+			<GroupBox Header="与调度台的信息"
+					  Margin="0,0,5,0">
 				<ListBox>
 					<ListBoxItem Content="岳阳东重新连接武广二台" />
 					<ListBoxItem Content="岳阳东：……" />
 				</ListBox>
 			</GroupBox>
 			<GroupBox Header="键盘输入区"
-					  Grid.Column="1">
+					  Grid.Column="1"
+					  Margin="0,0,5,0">
 				<Grid>
 					<Grid.RowDefinitions>
 						<RowDefinition Height="auto" />

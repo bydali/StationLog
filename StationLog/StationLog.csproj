@@ -217,12 +217,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\YDMSG\YDMSG\YDMSG.csproj">
-      <Project>{6e91f938-3123-4360-8447-948d4da71881}</Project>
-      <Name>YDMSG</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Libs\Communications.dll" />
     <Content Include="Libs\ControlzEx.dll" />
     <Content Include="Libs\EasyNetQ.dll" />

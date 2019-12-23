@@ -18,7 +18,6 @@ using System.Windows.Shapes;
 using DSIM.Communications;
 using MahApps.Metro.Controls;
 using Prism.Events;
-using YDMSG;
 
 namespace StationLog
 {
@@ -107,7 +106,7 @@ namespace StationLog
         /// 接收代签命令，并显示签收窗口
         /// </summary>
         /// <param name="data"></param>
-        private void AgentSignCmd(YDMSG.MsgCommandSign data)
+        private void AgentSignCmd(MsgCommandSign data)
         {
             if (data.AgentTarget == ConfigurationManager.ConnectionStrings["ClientName"].ConnectionString)
             {
@@ -218,5 +217,7 @@ namespace StationLog
         }
 
         #endregion
+
+
     }
 }

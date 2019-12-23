@@ -17,11 +17,12 @@
 		</Grid.ColumnDefinitions>
 		<Grid>
 			<Grid.RowDefinitions>
-				<RowDefinition Height="30" />
+				<RowDefinition Height="auto" />
 				<RowDefinition />
 			</Grid.RowDefinitions>
 			<StackPanel Orientation="Horizontal"
-						HorizontalAlignment="Center">
+						HorizontalAlignment="Center"
+						Margin="0,10,0,0">
 				<RadioButton Content="现状"
 							 Margin="0,0,10,0" />
 				<RadioButton Content="0点"
@@ -35,6 +36,7 @@
 				<Button Content="上报" />
 			</StackPanel>
 			<GroupBox Header="现在车"
+					  Margin="0,10,0,10"
 					  Grid.Row="1">
 			</GroupBox>
 		</Grid>
@@ -43,16 +45,18 @@
 				<RowDefinition Height="0.4*" />
 				<RowDefinition Height="0.6*" />
 			</Grid.RowDefinitions>
-			<GroupBox Header="现车分组">
+			<GroupBox Header="现车分组"
+					  Margin="5,10,0,0">
 			</GroupBox>
 			<GroupBox Header="编辑现车分组"
+					  Margin="5,10,0,10"
 					  Grid.Row="1">
 				<Grid>
 					<Grid.RowDefinitions>
 						<RowDefinition />
 						<RowDefinition Height="auto"/>
 					</Grid.RowDefinitions>
-					<StackPanel>
+					<StackPanel Margin="0,10,0,0">
 						<StackPanel Margin="10,0,0,10" Orientation="Horizontal">
 							<Label Content="地点" />
 							<TextBox Width="80" />

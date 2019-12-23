@@ -21,14 +21,17 @@
 				<RowDefinition Height="0.4*" />
 				<RowDefinition />
 			</Grid.RowDefinitions>
-			<GroupBox Header="列车">
+			<GroupBox Header="列车"
+					  Margin="5">
 			</GroupBox>
 			<GroupBox Header="编组单"
+					  Margin="5"
 					  Grid.Row="1">
 			</GroupBox>
 		</Grid>
 		<StackPanel Grid.Column="1">
-			<GroupBox Header="读取编组">
+			<GroupBox Header="读取编组"
+					  Margin="0,5,0,0">
 				<StackPanel>
 					<TextBox Margin="0,0,0,10" />
 					<Button Content="读取" />
@@ -64,9 +67,10 @@
 				<RowDefinition Height="0.7*" />
 				<RowDefinition Height="0.3*" />
 			</Grid.RowDefinitions>
-			<GroupBox Header="车辆">
+			<GroupBox Header="车辆" Margin="5">
 			</GroupBox>
 			<GroupBox Header="编组单报头编辑"
+					  Margin="5,0,5,5"
 					  Grid.Row="1">
 				<StackPanel>
 					<StackPanel Margin="0,10,0,0"
